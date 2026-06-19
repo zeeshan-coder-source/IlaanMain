@@ -12,7 +12,7 @@ const HoverLink = ({ text, className = "", defaultColor = "white", hoverColor = 
     <a
       href="#"
       className={`inline-block relative overflow-hidden ${cleanClassName}`}
-      style={{ verticalAlign: 'bottom' }}
+      style={{ height: '13px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -22,9 +22,8 @@ const HoverLink = ({ text, className = "", defaultColor = "white", hoverColor = 
             key={`a-${i}`}
             className="inline-block"
             style={{
-              transform: hovered ? 'translateY(-120%)' : 'translateY(0%)',
-              opacity: hovered ? 0 : 1,
-              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+              transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
               transitionDelay: `${i * 32}ms`,
             }}
           >
@@ -39,8 +38,7 @@ const HoverLink = ({ text, className = "", defaultColor = "white", hoverColor = 
             className="inline-block"
             style={{
               transform: hovered ? 'translateY(0%)' : 'translateY(120%)',
-              opacity: hovered ? 1 : 0,
-              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
               transitionDelay: `${i * 32}ms`,
             }}
           >
@@ -57,7 +55,7 @@ const BottomHoverLink = ({ text, className = "", isDark = false }) => {
   return (
     <span
       className={`inline-block relative cursor-pointer ${className}`}
-      style={{ height: '1em', overflow: 'hidden', lineHeight: '1', verticalAlign: 'middle', textDecoration: 'none' }}
+      style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -95,6 +93,49 @@ const BottomHoverLink = ({ text, className = "", isDark = false }) => {
   );
 };
 
+const BottomHoverLink2 = ({ text, className = "", isDark = false }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      className={`inline-block relative cursor-pointer ${className}`}
+      style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="block whitespace-nowrap" style={{ color: isDark ? 'rgba(255, 255, 255, 1)' : '#ffffffff' }}>
+        {text.split('').map((char, i) => (
+          <span
+            key={`a-${i}`}
+            className="inline-block"
+            style={{
+              transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+              transitionDelay: `${i * 25}ms`,
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </div>
+      <div className="absolute inset-0 block whitespace-nowrap" style={{ color: isDark ? '#cdff00' : '#cdff00' }}>
+        {text.split('').map((char, i) => (
+          <span
+            key={`b-${i}`}
+            className="inline-block"
+            style={{
+              transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+              transitionDelay: `${i * 25}ms`,
+            }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </div>
+    </span>
+  );
+};
+
 import logoIcon from '../assets/3d_Logo 1.png';
 import grayPanel from '../assets/graypanel.png';
 import grayPanelMobile from '../assets/graypanelmobile.png';
@@ -106,11 +147,11 @@ import ilanImg from '../assets/ilan.png';
 const Footer = ({ bgGradient, isDark = false }) => {
   return (
     <footer
-      className="w-full font-sans relative xl:pb-[2.5vw] pt-[40px]"
+      className="w-full font-sans relative xl:pb-[0.5vw] pt-[40px]"
       style={{ background: bgGradient || 'linear-gradient(to bottom, #e6fba2 0%, #cdff00 100%)' }}
     >
       {/* Background Panel Container */}
-      <div className="relative mx-auto w-[90%] sm:w-[80%] lg:w-[95%] flex flex-col items-center text-white px-4 sm:px-6 pt-[12%] pb-[14%] lg:pt-[3vw] lg:pb-[5vw]">
+      <div className="relative mx-auto w-[90%] sm:w-[80%] lg:w-[98%] flex flex-col items-center text-white px-4 sm:px-6 pt-[12%] pb-[14%] lg:pt-[3vw] lg:pb-[5.5vw]">
         {/* Mobile Background Panel */}
         <div
           className="absolute inset-0 lg:hidden z-0"
@@ -143,7 +184,9 @@ const Footer = ({ bgGradient, isDark = false }) => {
                 <HoverLink text="DIGITAL SIGNAGE" className="font-falcon" />
                 <HoverLink text="LINK" className="font-falcon" />
                 <HoverLink text="MEDIA" className="font-falcon" />
-                <HoverLink text="STORE" className="font-falcon font-bold text-[14px] sm:text-[15px] mt-4 uppercase tracking-widest" defaultColor="#cdff00" hoverColor="white" />
+                <a href="#" className="font-falcon font-bold text-[14px] sm:text-[15px] mt-4 uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300">
+                  STORE
+                </a>
               </nav>
             </div>
             {/* Follow On Column */}
@@ -175,7 +218,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
         </div>
 
         {/* --- DESKTOP LAYOUT --- */}
-        <div className="hidden lg:flex flex-col items-center w-full h-full justify-between z-10">
+        <div className="hidden lg:flex flex-col items-center w-full h-full justify-between z-10 lg:mt-10">
           {/* Top Headline */}
           <div className="flex flex-col items-center text-center -space-y-[0.5vw]">
             <img src={moreAttentionImg} alt="More Attention" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
@@ -189,12 +232,14 @@ const Footer = ({ bgGradient, isDark = false }) => {
             <div className="flex flex-col items-center pr-[2vw] xl:pr-[4vw]">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">PAGES</span>
               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
-                <HoverLink text="STUDIO" className="font-falcon" />
-                <HoverLink text="DIGITAL SIGNAGE" className="font-falcon" />
-                <HoverLink text="LINK" className="font-falcon" />
-                <HoverLink text="MEDIA" className="font-falcon" />
+                <BottomHoverLink2 text="STUDIO" className="font-falcon" />
+                <BottomHoverLink2 text="DIGITAL SIGNAGE" className="font-falcon" />
+                <BottomHoverLink2 text="LINK" className="font-falcon" />
+                <BottomHoverLink2 text="MEDIA" className="font-falcon" />
               </nav>
-              <HoverLink text="STORE" className="font-falcon font-bold text-[1vw] xl:text-[18px] mt-[1.5vw] xl:mt-6 uppercase tracking-widest" defaultColor="#cdff00" hoverColor="white" />
+              <a href="#" className="font-falcon font-bold text-[1vw] xl:text-[18px] mt-[1.5vw] xl:mt-6 uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300">
+                STORE
+              </a>
             </div>
 
             {/* CENTER: Identity */}
@@ -207,12 +252,12 @@ const Footer = ({ bgGradient, isDark = false }) => {
             <div className="flex flex-col items-center pl-[2vw] xl:pl-[4vw]">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">FOLLOW ON</span>
               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
-                <HoverLink text="TIKTOK" className="font-falcon" />
-                <HoverLink text="INSTAGRAM" className="font-falcon uppercase" />
-                <HoverLink text="YOUTUBE" className="font-falcon uppercase" />
-                <HoverLink text="FACEBOOK" className="font-falcon uppercase" />
-                <HoverLink text="LINKEDIN" className="font-falcon uppercase" />
-                <HoverLink text="X" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="TIKTOK" className="font-falcon" />
+                <BottomHoverLink2 text="INSTAGRAM" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="YOUTUBE" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="FACEBOOK" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="LINKEDIN" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="X" className="font-falcon uppercase" />
               </nav>
             </div>
           </div>
@@ -220,13 +265,17 @@ const Footer = ({ bgGradient, isDark = false }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className={`w-full flex flex-row xl:flex-row-reverse justify-between items-center px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[2.5vw] xl:left-[0.1%] xl:w-[98%] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
-        <div className="flex space-x-3 sm:space-x-4 md:space-x-6">
-          <BottomHoverLink text="PRIVACY POLICY" isDark={isDark} />
-          <BottomHoverLink text="TERMS" isDark={isDark} />
+      <div className={`w-full flex flex-col md:flex-row xl:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
+        <div className="flex space-x-3 sm:space-x-4 md:space-x-6 justify-center">
+          <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            PRIVACY POLICY
+          </a>
+          <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            TERMS
+          </a>
         </div>
-        <div className="opacity-90 text-right">
-          <BottomHoverLink text="© 2026 Ilaan Limited. All rights reserved" isDark={isDark} />
+        <div className="opacity-90 text-center md:text-left xl:text-right whitespace-nowrap">
+          © 2026 Ilaan Limited. All rights reserved
         </div>
       </div>
     </footer>

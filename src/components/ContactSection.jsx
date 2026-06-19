@@ -62,7 +62,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="w-full py-6 pb-10 md:pb-20 lg:pb-40 px-4 md:px-6 relative overflow-hidden" style={{
+    <section className="w-full py-6 pb-10 md:pb-20 lg:pb-20 px-4 md:px-6 relative overflow-hidden" style={{
       background: 'linear-gradient(180deg, #FFFFFF 0%, #E6FBA2 100%)'
     }}>
 
@@ -82,7 +82,7 @@ const ContactSection = () => {
     lg:left-[-35px]
     lg:top-[15px]
 
-    xl:left-[-53px]
+    xl:left-[-70px]
     xl:top-[0px]
   "
       >
@@ -174,7 +174,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="w-full max-w-[1329px] min-h-[auto] md:min-h-[894px] rounded-[30px] md:rounded-[50px] bg-[#FFFFFF] border border-[#46960040] shadow-2xl p-6 md:p-14 lg:p-[70px] flex flex-col justify-between"
+            className="w-full max-w-[1329px] min-h-[auto] md:min-h-[825px] rounded-[30px] md:rounded-[50px] bg-[#FFFFFF] border border-[#46960040] shadow-2xl p-6 md:p-14 lg:p-[70px] lg:pb-[53px] flex flex-col justify-between"
           >
             <form onSubmit={handleSubmit} className="flex flex-col h-full flex-grow justify-between">
 
@@ -205,7 +205,7 @@ const ContactSection = () => {
                 </motion.div>
               )}
 
-              <div className="space-y-4 md:space-y-8">
+              <div className="space-y-4 md:space-y-8 mb-[12px]">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                   {/* Name */}
                   <div className="relative">

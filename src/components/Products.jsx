@@ -5,7 +5,8 @@ import { useNavigation } from '../context/NavigationContext';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import bgImage from '../assets/zeeshan.png';
+import bgImageDesktop from '../assets/Group 1261156800.png';
+import bgImageMobile from '../assets/abc.png';
 import titleImage from '../assets/Ilaan_Digital_Signage 1.png';
 import newImg from '../assets/New.png';
 import productsImg from '../assets/Products.png';
@@ -30,13 +31,13 @@ const ProductCard = ({ title, image }) => {
       }}
     >
       {/* Product Image */}
-        <div className="flex-grow flex items-center justify-center p-1 md:p-4 min-h-0">
-          <img
-            src={image}
-            alt={title}
-            className="max-h-[130px] sm:max-h-[170px] md:max-h-[230px] lg:max-h-[280px] max-w-[95%] w-auto object-contain transition-transform duration-500 group-hover:scale-110"
-          />
-        </div>
+      <div className="flex-grow flex items-center justify-center p-1 md:p-4 min-h-0">
+        <img
+          src={image}
+          alt={title}
+          className="max-h-[130px] sm:max-h-[170px] md:max-h-[230px] lg:max-h-[170px] max-w-[95%] w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
 
       {/* Text Content */}
       <div className="mt-auto px-2 shrink-0">
@@ -71,10 +72,10 @@ const Products = () => {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Title & Subtitle Sliding Effect
-      gsap.fromTo(titleRef.current, 
+      gsap.fromTo(titleRef.current,
         { x: -50 },
-        { 
-          x: 50, 
+        {
+          x: 50,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -85,10 +86,10 @@ const Products = () => {
         }
       );
 
-      gsap.fromTo(subtitleRef.current, 
+      gsap.fromTo(subtitleRef.current,
         { x: 50 },
-        { 
-          x: -50, 
+        {
+          x: -50,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -121,11 +122,22 @@ const Products = () => {
   return (
     <section ref={containerRef} className="relative w-full py-10 md:py-14 px-2 md:px-8 flex flex-col items-center overflow-hidden bg-[#eefc7e] mx-auto min-h-0 md:min-h-screen">
 
-      {/* Background Image Overlay */}
+      {/* Background Image Overlay - Desktop */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="hidden md:block absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(${bgImageDesktop})`,
+          backgroundSize: '100% 100%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
+      {/* Background Image Overlay - Mobile */}
+      <div
+        className="block md:hidden absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${bgImageMobile})`,
           backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -135,7 +147,7 @@ const Products = () => {
       <div className="relative z-10 max-w-[1600px] w-full flex flex-col items-center">
 
         {/* Badge */}
-        <div className="mb-4 py-2 md:py-[6px] px-6 md:px-8 bg-white/50 rounded-full backdrop-blur-md border border-white/30">
+        <div className="mb-4 py-1 md:py-[6px] px-6 md:px-8 bg-white/50 rounded-full backdrop-blur-md border border-white/30">
           <span className="text-[10px] md:text-[16px] font-semibold text-green-700 font-inter">
             Explore Our Latest
           </span>
@@ -172,7 +184,7 @@ const Products = () => {
         </div><br />
 
         {/* Grid / Carousel */}
-        <div 
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full px-[13vw] sm:px-2 pb-8 pt-4"
         >
           {productList.map((product, i) => (

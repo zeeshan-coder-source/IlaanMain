@@ -85,7 +85,7 @@ const Marquee = ({ logos }) => {
             key={i}
             src={logo}
             alt="Partner"
-            className="h-[100px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+            className="h-[180px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
           />
         ))}
       </div>
@@ -98,11 +98,15 @@ const SocialLink = ({ link }) => {
   return (
     <a
       href="#"
-      className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[25px] whitespace-nowrap"
+      className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[28px] whitespace-nowrap"
       style={{
-        lineHeight: '149.7%',
-        letterSpacing: '0%',
         fontFamily: "'Falcon',Falcon",
+        height: '25px',
+        overflow: 'hidden',
+        lineHeight: '1.3',
+        verticalAlign: 'middle',
+        textDecoration: 'none',
+        letterSpacing: '-1px',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -144,6 +148,8 @@ const SocialLink = ({ link }) => {
     </a>
   );
 };
+
+
 
 const Socials = () => {
   const containerRef = useRef(null);
@@ -342,7 +348,7 @@ const Socials = () => {
         {/* ── Heading ─────────────────────────────────────────────────────── */}
         <div
           ref={headingRef}
-          className="flex flex-col items-center mb-8 md:mb-16 px-4"
+          className="flex flex-col items-center mb-8 md:mb-0 px-4"
         >
           <img
             src={screenImg}

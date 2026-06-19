@@ -6,83 +6,49 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import NavOverlay from './NavOverlay';
 import Header from './Header';
 
-// Assets import
-import bg1 from '../assets/bg.png';
-import bg2 from '../assets/1.png';
-import bg3 from '../assets/22.png';
-import bg4 from '../assets/content.png';
+import bg1 from '../assets/backup/01.png';
+import bg2 from '../assets/backup/02.png';
+import bg3 from '../assets/backup/03.png';
+import bg4 from '../assets/backup/04.png';
 
-// Mobile Assets import
-import bg1Mobile from '../assets/bg_mobile.png';
-import bg2Mobile from '../assets/1_mobile.png';
-import bg3Mobile from '../assets/22_mobile.png';
-import bg4Mobile from '../assets/content_mobile.png';
+import bg1Mobile from '../assets/backup/1.png';
+import bg2Mobile from '../assets/backup/2.png';
+import bg3Mobile from '../assets/backup/3.png';
+import bg4Mobile from '../assets/backup/4.png';
 
-import ilaanTextImage from '../assets/Ilaan.png';
-import studioTextImage from '../assets/Studio.png';
+// --- TITLE IMAGES (Studio / Media / Electronic / Digital Signage) — desktop + mobile ---
+import studioTitleDesktop from '../assets/new/Ilaan_Studio_Desktop.png';
+import studioTitleMobile from '../assets/new/Ilaan_Studio_Mobiletxt.png';
+import mediaTitleDesktop from '../assets/new/Ilaan_Media_Desktoptxt.png';
+import mediaTitleMobile from '../assets/new/Ilaan_Media_Mobile 1.png';
+import electronicTitleDesktop from '../assets/new/Ilaan_link_Desktop.png';
+import electronicTitleMobile from '../assets/new/Ilaan_link_Mobiletxt.png';
+import signageTitleDesktop from '../assets/new/Ilaan_Digital_Signage_Desktop.png';
+import signageTitleMobile from '../assets/new/Ilaan_Digital_Signage_Mobiletxt.png';
 
 const desktopSlides = [bg1, bg2, bg3, bg4];
 const mobileSlides = [bg1Mobile, bg2Mobile, bg3Mobile, bg4Mobile];
 const SLIDE_DURATION = 4000; // ms per slide
 
-// const slideContents = [
-//   {
-//     brandType: 'image',
-//     brandSrc: ilaanTextImage,
-//     titleType: 'image',
-//     titleSrc: studioTextImage,
-//     subtitle: 'Creative & Branding Solutions'
-//   },
-//   {
-//     brandType: 'text',
-//     brandText: 'ILAAN',
-//     titleType: 'text',
-//     titleText: 'Media',
-//     subtitle: 'Creative & Branding Solutions'
-//   },
-//   {
-//     brandType: 'text',
-//     brandText: 'ESL',
-//     titleType: 'text',
-//     titleText: 'Electronic',
-//     subtitle: 'Shelf Label'
-//   },
-//   {
-//     brandType: 'text',
-//     brandText: 'ILAAN',
-//     titleType: 'text',
-//     titleText: 'Digital Signage',
-//     subtitle: 'Smart Signage Solutions'
-//   }
-// ];
-
 const slideContents = [
   {
-    brandType: 'text',
-    brandText: 'ILAAN',
-    titleType: 'text',
-    titleText: 'Studio',
+    titleImageDesktop: studioTitleDesktop,
+    titleImageMobile: studioTitleMobile,
     subtitle: 'Creative & Branding Solutions'
   },
   {
-    brandType: 'text',
-    brandText: 'ILAAN',
-    titleType: 'text',
-    titleText: 'Media',
+    titleImageDesktop: mediaTitleDesktop,
+    titleImageMobile: mediaTitleMobile,
     subtitle: 'Creative & Branding Solutions'
   },
   {
-    brandType: 'text',
-    brandText: 'ESL',
-    titleType: 'text',
-    titleText: 'Electronic',
+    titleImageDesktop: electronicTitleDesktop,
+    titleImageMobile: electronicTitleMobile,
     subtitle: 'Eliminate Manual Price'
   },
   {
-    brandType: 'text',
-    brandText: 'ILAAN',
-    titleType: 'text',
-    titleText: 'Digital Signage',
+    titleImageDesktop: signageTitleDesktop,
+    titleImageMobile: signageTitleMobile,
     subtitle: 'Smart Signage Solutions'
   }
 ];
@@ -105,6 +71,8 @@ const Hero = () => {
   }, []);
 
   const slides = isMobile ? mobileSlides : desktopSlides;
+  const slide = slideContents[current];
+  const titleImage = isMobile ? slide.titleImageMobile : slide.titleImageDesktop;
 
   // Auto-advance slides
   useEffect(() => {
@@ -177,187 +145,86 @@ const Hero = () => {
 
       <div ref={heroRef} className="relative h-screen w-full bg-black text-white font-sans p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden">
 
-      {/* --- WRAPPER WITH VISIBLE BORDER --- */}
-      <div className="relative h-full w-full border-2 border-[#D9FF00]/30 rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_0_20px_rgba(217,255,0,0.1)]">
+        {/* --- WRAPPER WITH VISIBLE BORDER --- */}
+        <div className="relative h-full w-full border-2 border-[#D9FF00]/30 rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_0_20px_rgba(217,255,0,0.1)]">
 
-        {/* --- CAROUSEL BACKGROUND --- */}
-        <div ref={bgRef} className="absolute inset-0 z-0">
-          <AnimatePresence mode="sync">
-            <motion.img
-              key={current}
-              src={slides[current]}
-              alt="Hero Background"
-              className="absolute inset-0 h-full w-full object-cover scale-125"
-
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-
-        {/* --- HERO CONTENT --- */}
-        {/* <main ref={contentRef} className="relative z-10 flex flex-col justify-center flex-grow px-8 md:px-16 lg:px-24">
-          <div className="max-w-5xl mb-10 md:mb-30 reveal-text">
-            <AnimatePresence mode="wait">
-              <motion.div
+          {/* --- CAROUSEL BACKGROUND --- */}
+          <div ref={bgRef} className="absolute inset-0 z-0">
+            <AnimatePresence mode="sync">
+              <motion.img
                 key={current}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="py-2 md:py-6 flex flex-col md:flex-row items-start md:items-center justify-start gap-1 md:gap-1.5 lg:gap-2 -ml-[4px]">
-                
-                  {slideContents[current].brandType === 'image' ? (
-                    <img
-                      alt="Brand"
-                      className="block h-auto object-contain w-[180px] md:w-[200px] md:max-w-[320px] lg:max-w-[420px]"
-                      src={slideContents[current].brandSrc}
-                    />
-                  ) : (
-                    <span className="font-falcon text-white text-[42px] sm:text-[50px] md:text-[62px] lg:text-[84px] font-bold leading-none select-none tracking-tight">
-                      {slideContents[current].brandText}
-                    </span>
-                  )}
-
-                
-                  {slideContents[current].titleType === 'image' ? (
-                    <img
-                      alt="Title"
-                      className="block h-auto object-contain w-[160px] md:w-[180px] md:max-w-[280px] lg:max-w-[360px]"
-                      src={slideContents[current].titleSrc}
-                    />
-                  ) : (
-                    <span className="font-falcon text-[#D9FF00] text-[42px] sm:text-[50px] md:text-[62px] lg:text-[84px] font-bold leading-none select-none tracking-tight">
-                      {slideContents[current].titleText}
-                    </span>
-                  )}
-                </div>
-
-                <p className="mt-4 md:mt-10 text-[16px] md:text-[25px] text-white font-poppins font-normal leading-[1.32] tracking-normal max-w-[200px] md:max-w-full">
-                  {slideContents[current].subtitle}
-                </p>
-              </motion.div>
+                src={slides[current]}
+                alt="Hero Background"
+                className="absolute inset-0 h-full w-full object-cover scale-100"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2, ease: "easeInOut" }}
+              />
             </AnimatePresence>
+            <div className="absolute inset-0 bg-black/40" />
           </div>
-        </main> */}
 
-        {/* --- HERO CONTENT --- */}
-        {/* <main ref={contentRef} className="relative z-10 flex flex-col justify-center flex-grow px-8 md:px-16 lg:px-24">
-          <div className="max-w-5xl mb-10 md:mb-30 reveal-text">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="py-2 md:py-6 flex flex-row items-center justify-start gap-3 md:gap-4 lg:gap-5 -ml-[4px]">
+          {/* Spacer to clear fixed header */}
+          {/* <div className="h-16 md:h-20 shrink-0" /> */}
 
-
-                  {slideContents[current].brandType === 'image' ? (
-                    <img
-                      alt="Brand"
-                      className="block h-auto object-contain w-[180px] md:w-[220px] lg:w-[280px]"
-                      src={slideContents[current].brandSrc}
-                    />
-                  ) : (
-                    <span className="text-white text-[42px] sm:text-[52px] md:text-[68px] lg:text-[88px] font-bold leading-none tracking-tight whitespace-nowrap">
-                      {slideContents[current].brandText}
-                    </span>
-                  )}
-
-
-                  {slideContents[current].titleType === 'image' ? (
-                    <img
-                      alt="Title"
-                      className="block h-auto object-contain w-[160px] md:w-[200px] lg:w-[260px]"
-                      src={slideContents[current].titleSrc}
-                    />
-                  ) : (
-                    <span className="text-[#D9FF00] text-[42px] sm:text-[52px] md:text-[68px] lg:text-[88px] font-bold leading-none tracking-tight whitespace-nowrap">
-                      {slideContents[current].titleText}
-                    </span>
-                  )}
-
-                </div>
-
-                <p className="mt-4 md:mt-10 text-[16px] md:text-[25px] text-white font-poppins font-normal leading-[1.32] tracking-normal max-w-[200px] md:max-w-full">
-                  {slideContents[current].subtitle}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </main> */}
-
-        {/* Spacer to clear fixed header */}
-        <div className="h-16 md:h-20 shrink-0" />
-
-        <main ref={contentRef} className="relative z-10 flex flex-col justify-center flex-grow px-8 md:px-16 lg:px-24">
-          <div className="max-w-5xl mb-10 md:mb-30 reveal-text">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="py-2 md:py-4 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-1 sm:gap-3 lg:gap-4">
-
-                  {/* Brand */}
-                  <span className="font-falcon text-white text-[42px] sm:text-[60px] md:text-[80px] lg:text-[95px] font-bold leading-none tracking-tight">
-                    {slideContents[current].brandText}
-                  </span>
-
-                  {/* Title */}
-                  <span className="font-falcon text-[#D9FF00] text-[42px] sm:text-[60px] md:text-[80px] lg:text-[95px] font-bold leading-none tracking-tight">
-                    {slideContents[current].titleText}
-                  </span>
-
-                </div>
-
-                <p className="mt-4 md:mt-10 text-[16px] md:text-[25px] text-white font-poppins font-normal leading-[1.32] tracking-normal max-w-[200px] md:max-w-full">
-                  {slideContents[current].subtitle}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </main>
-
-        {/* --- SLIDER INDICATOR (bottom center) --- */}
-        <div className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2 md:gap-3 reveal-text">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className="relative h-[4px] w-[60px] md:w-[120px] rounded-full overflow-hidden cursor-pointer focus:outline-none"
-              style={{ background: 'rgba(255,255,255,0.3)' }}
-            >
-              {/* Animated progress fill for active slide */}
-              {i === current && (
+          <main ref={contentRef} className="relative z-10 flex flex-col justify-center flex-grow px-8 md:px-16 lg:px-24">
+            <div className="max-w-5xl mb-10 md:mb-10 reveal-text">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  className="absolute inset-y-0 left-0 bg-white rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-              )}
-            </button>
-          ))}
+                  key={current}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                >
+                  <div className="lg:ml-[-5px] py-2 md:py-4 flex items-center justify-start">
+
+                    <img
+                      src={titleImage}
+                      alt={`${slide.subtitle} title`}
+                      className="h-[100px] sm:h-[60px] md:h-[80px] lg:h-[95px] w-auto object-contain"
+                    />
+
+                  </div>
+
+                  <p className="mt-4 md:mt-10 text-[16px] md:text-[25px] text-white font-poppins font-normal leading-[1.32] tracking-normal max-w-[200px] md:max-w-full">
+                    {slide.subtitle}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </main>
+
+          {/* --- SLIDER INDICATOR (bottom center) --- */}
+          <div className="absolute bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2 md:gap-3 reveal-text">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className="relative h-[4px] w-[60px] md:w-[120px] rounded-full overflow-hidden cursor-pointer focus:outline-none"
+                style={{ background: 'rgba(255,255,255,0.3)' }}
+              >
+                {/* Animated progress fill for active slide */}
+                {i === current && (
+                  <motion.div
+                    className="absolute inset-y-0 left-0 bg-white rounded-full"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
         </div>
 
+        {/* Navigation Overlay Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <NavOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* Navigation Overlay Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <NavOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-        )}
-      </AnimatePresence>
-    </div>
     </>
   );
 };

@@ -17,7 +17,7 @@ const Card = ({ titleImg, description, image, bgColor, textColor, showLogin, btn
   return (
     <div
       // className={`service-card relative group w-full h-[360px] sm:h-[480px] md:h-[620px] lg:h-[600px] xl:h-[805px] rounded-[2.5rem] md:rounded-[4rem] rounded-tl-none md:rounded-tl-none pt-5 p-5 md:pt-14 md:p-16 flex flex-col justify-start overflow-hidden shadow-2xl ${bgColor} ${textColor} cursor-pointer origin-center will-change-transform`}
-      className={`service-card relative group w-full min-h-[260px] sm:min-h-[480px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[660px] rounded-[2.5rem] md:rounded-[4rem] rounded-tl-none md:rounded-tl-none pt-5 p-5 md:pt-14 md:px-16 md:pb-6 lg:pb-6 xl:pb-10 flex flex-col justify-between overflow-hidden shadow-2xl ${bgColor} ${textColor} cursor-pointer origin-center will-change-transform`}
+      className={`service-card relative group w-full min-h-[260px] sm:min-h-[480px] md:min-h-[470px] lg:min-h-[440px] xl:min-h-[570px] rounded-[2.5rem] md:rounded-[4rem] rounded-tl-none md:rounded-tl-none pt-5 p-5 md:pt-14 md:px-16 md:pb-6 lg:pb-6 xl:pb-10 flex flex-col justify-between overflow-hidden shadow-2xl ${bgColor} ${textColor} cursor-pointer origin-center will-change-transform`}
     >
       <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       <div className="relative z-10 w-full">
