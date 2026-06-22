@@ -10,13 +10,14 @@ import bgImageMobile from '../assets/abc.png';
 import titleImage from '../assets/Ilaan_Digital_Signage 1.png';
 import newImg from '../assets/New.png';
 import productsImg from '../assets/Products.png';
-import p1 from '../assets/ChatGPT Image Apr 30, 2026, 05_41_10 PM 1.png';
-import p2 from '../assets/ChatGPT Image Apr 30, 2026, 05_41_10 PM 3.png';
-import p3 from '../assets/02 1.png';
-import p4 from '../assets/ChatGPT Image Apr 30, 2026, 05_41_10 PM 1 (1).png';
-import p5 from '../assets/ChatGPT Image Apr 30, 2026, 05_41_10 PM 1 (2).png';
-import p6 from '../assets/ChatGPT Image Apr 30, 2026, 05_41_10 PM 1.png';
-import cardBg from '../assets/card-background.webp';
+import p1 from '../assets/product1.png';
+import p2 from '../assets/product2.png';
+import p3 from '../assets/product3 (2).png';
+import p4 from '../assets/product4.png';
+import p5 from '../assets/product5 (2).png';
+import p6 from '../assets/product6 (2).png';
+// import cardBg from '../assets/card-background.webp';
+import cardBg from '../assets/Group 99 copy.png';
 
 const ProductCard = ({ title, image }) => {
   const { navigateTo } = useNavigation();
@@ -31,21 +32,21 @@ const ProductCard = ({ title, image }) => {
       }}
     >
       {/* Product Image */}
-      <div className="flex-grow flex items-center justify-center p-1 md:p-4 min-h-0">
+      <div className="flex-grow flex items-center justify-center p-2 sm:p-3 md:p-3 min-h-0">
         <img
           src={image}
           alt={title}
-          className="max-h-[130px] sm:max-h-[170px] md:max-h-[230px] lg:max-h-[170px] max-w-[95%] w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+          className="max-h-[85px] sm:max-h-[110px] md:max-h-[135px] lg:max-h-[145px] xl:max-h-[170px] max-w-[65%] sm:max-w-[75%] h-auto w-auto object-contain transition-transform duration-500 group-hover:scale-110"
         />
       </div>
 
       {/* Text Content */}
       <div className="mt-auto px-2 shrink-0">
-        <h3 className="text-[10px] sm:text-[11px] md:text-[16px] lg:text-[19px] font-semibold text-black mb-1 md:mb-2 font-inter leading-tight">
+        <h3 className="text-[10px] sm:text-[11px] md:text-[16px] lg:text-[30px] font-medium text-black mb-1 md:mb-2 font-inter leading-tight">
           {title}
         </h3>
 
-        <button className="flex items-center gap-1.5 text-[#2563eb] font-semibold text-[8px] sm:text-[9px] md:text-[10px] lg:text-[11px] transition-all group-hover:gap-2">
+        <button className="flex items-center gap-1.5 text-[#2563eb] font-normal text-[8px] sm:text-[9px] md:text-[10px] lg:text-[18px] transition-all group-hover:gap-2">
           View Detail <ArrowRight className="translate-y-[0.5px] w-[8px] h-[8px] sm:w-[9px] sm:h-[9px] md:w-[10px] md:h-[10px] lg:w-[12px] lg:h-[12px]" />
         </button>
 
@@ -144,17 +145,17 @@ const Products = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-[1600px] w-full flex flex-col items-center">
+      <div className="relative z-10 w-full flex flex-col items-center">
 
         {/* Badge */}
-        <div className="mb-4 py-1 md:py-[6px] px-6 md:px-8 bg-white/50 rounded-full backdrop-blur-md border border-white/30">
-          <span className="text-[10px] md:text-[16px] font-semibold text-green-700 font-inter">
+        <div className="mb-8 md:mb-12 py-2 md:py-2.5 px-8 md:px-10 bg-[#e2f0d9]/95 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md">
+          <span className="text-[11px] md:text-[19px] font-semibold text-[#0a3a1b] font-poppins tracking-wide">
             Explore Our Latest
           </span>
         </div>
 
         {/* Title Image or Text / Figma Images on Mobile */}
-        <div ref={titleRef} className="mb-4 w-full max-w-[747px] px-4 flex justify-center">
+        <div ref={titleRef} className="mb-2 md:mb-0 w-full max-w-[747px] px-4 flex justify-center">
           <img
             src={titleImage}
             alt="ILAAN Digital Signage"
@@ -178,14 +179,15 @@ const Products = () => {
 
         {/* Subtitle */}
         <div ref={subtitleRef}>
-          <p className="text-center w-full mb-5 md:mb-[60px] text-[9px] md:text-[19.5px] font-medium text-[#424242] font-poppins max-w-2xl px-4">
+          <p className="text-center w-full mb-5 md:mb-[60px] text-[10px] md:text-[19.5px] font-medium text-[#1c1c1c] font-poppins max-w-none px-4 leading-normal md:leading-relaxed">
             Discover innovative displays built for impact, clarity and performance.
           </p>
         </div><br />
 
         {/* Grid / Carousel */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full px-[13vw] sm:px-2 pb-8 pt-4"
+          // className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10 w-full px-[13vw] sm:px-2 pb-8 pt-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10 w-full px-[4%] pb-8 pt-4"
         >
           {productList.map((product, i) => (
             <div key={i} className="flex justify-center">

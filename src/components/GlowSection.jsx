@@ -122,7 +122,7 @@ const GlowSection = () => {
       <div ref={stickyRef} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
         {/* Header Logo and Text (ILAAN STUDIO style) */}
-        <div ref={headerRef} className="absolute top-20 left-0 right-0 z-30 flex flex-col items-center pointer-events-none opacity-0">
+        <div ref={headerRef} className="absolute top-32 left-0 right-0 z-30 flex flex-col items-center pointer-events-none opacity-0">
           <div className="w-12 h-12 mb-2">
             <video
               src={logo3D}

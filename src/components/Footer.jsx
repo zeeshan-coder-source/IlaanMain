@@ -177,7 +177,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
         <div className="flex lg:hidden flex-col items-center w-full h-full justify-between z-10">
           <div className="flex justify-between w-full px-4">
             {/* Pages Column */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center pt-8">
               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">PAGES</span>
               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] leading-[1.2] tracking-normal space-y-0 text-center font-falcon">
                 <HoverLink text="STUDIO" className="font-falcon" />
@@ -190,7 +190,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
               </nav>
             </div>
             {/* Follow On Column */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center pt-8">
               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">FOLLOW ON</span>
               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] leading-[1.2] tracking-normal space-y-0 text-center font-falcon">
                 <HoverLink text="TIKTOK" className="font-falcon" />
@@ -227,9 +227,9 @@ const Footer = ({ bgGradient, isDark = false }) => {
           </div>
 
           {/* Main Center Grid */}
-          <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full max-w-[1600px] mx-auto gap-x-2 xl:gap-x-8">
+          <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full max-w-[1300px] mx-auto gap-x-2 xl:gap-x-8">
             {/* LEFT: Pages */}
-            <div className="flex flex-col items-center pr-[2vw] xl:pr-[4vw]">
+            <div className="flex flex-col items-center">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">PAGES</span>
               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
                 <BottomHoverLink2 text="STUDIO" className="font-falcon" />
@@ -249,7 +249,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
             </div>
 
             {/* RIGHT: Socials */}
-            <div className="flex flex-col items-center pl-[2vw] xl:pl-[4vw]">
+            <div className="flex flex-col items-center">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">FOLLOW ON</span>
               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
                 <BottomHoverLink2 text="TIKTOK" className="font-falcon" />

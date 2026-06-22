@@ -29,7 +29,7 @@ const Card = ({ titleImg, description, image, bgColor, textColor, showLogin, btn
           <img src={image} alt="Card visual" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
         </div>
 
-        <p className="text-[11px] sm:text-[13px] md:text-[15px] lg:text-[18px] xl:text-[22px] font-poppins font-normal leading-[1.5] md:leading-[1.7] tracking-normal mb-2 sm:mb-4 md:mb-4 lg:mb-4 xl:mb-12 opacity-90 max-w-[700px] text-left">
+        <p className="text-[11px] sm:text-[13px] md:text-[15px] lg:text-[18px] xl:text-[26px] font-poppins font-normal leading-[1.5] md:leading-[1.7] tracking-normal mb-2 sm:mb-4 md:mb-4 lg:mb-4 xl:mb-12 opacity-90 max-w-[700px] text-left">
           {description}
         </p>
 
