@@ -52,19 +52,21 @@ function App() {
       });
 
       // Synchronize Lenis with GSAP ScrollTrigger
-      lenis.on('scroll', ScrollTrigger.update);
+      const updateScrollTrigger = () => ScrollTrigger.update();
+      lenis.on('scroll', updateScrollTrigger);
 
       // Use GSAP's ticker for the RAF loop
-      gsap.ticker.add((time) => {
+      const updateLenis = (time) => {
         lenis.raf(time * 1000);
-      });
+      };
+      gsap.ticker.add(updateLenis);
 
       // Prevent stuttering
       gsap.ticker.lagSmoothing(0);
 
       return () => {
         lenis.destroy();
-        gsap.ticker.remove(ScrollTrigger.update);
+        gsap.ticker.remove(updateLenis);
       };
     }
   }, [isLoading]);
