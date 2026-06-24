@@ -86,7 +86,7 @@ a {
   flex-direction: column;
 }
 
-h1,
+/* h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
@@ -117,7 +117,7 @@ h2 {
 
 p {
   margin: 0;
-}
+} */
 
 code,
 .counter {
@@ -132,4 +132,64 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+@media (max-width: 2671px) {
+  .shantu {
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 2560px) {
+  .shantu {
+    gap: 40px !important;
+  }
+}
+
+@media (max-width: 1440px) {
+  .shantu {
+    gap: 39px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .shantu {
+    gap: 32px !important;
+  }
+
+  .zee {
+    height: 17px !important;
+    /* line-height: 1.2; */
+  }
+
+  .bottombar {
+    font-size: 7px !important;
+    padding-inline: calc(var(--spacing) * 4) !important;
+    margin-top: -42px !important;
+  }
+
+  .laptop {
+    padding-bottom: 0;
+    min-height: 95vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottombar {
+    font-size: 7px !important;
+    padding-inline: calc(var(--spacing) * 3) !important;
+    margin-top: -30px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .shantu {
+    gap: 0px !important;
+  }
+
+  .bottombar {
+    font-size: 7px !important;
+    padding-inline: calc(var(--spacing) * 4) !important;
+    margin-top: -12px !important;
+  }
 }

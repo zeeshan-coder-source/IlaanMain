@@ -1,6 +1,609 @@
 
 
 
+// // import { useState } from 'react';
+// // import { motion } from 'framer-motion';
+
+// // const HoverLink = ({ text, className = "", defaultColor = "white", hoverColor = "#cdff00" }) => {
+// //   const [hovered, setHovered] = useState(false);
+// //   const cleanClassName = className.split(' ').filter(c => !['hover:text-[#cdff00]', 'hover:underline', 'transition'].includes(c)).join(' ');
+
+// //   return (
+// //     <a
+// //       href="#"
+// //       className={`inline-block relative overflow-hidden ${cleanClassName}`}
+// //       style={{ height: '13px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
+// //       onMouseEnter={() => setHovered(true)}
+// //       onMouseLeave={() => setHovered(false)}
+// //     >
+// //       <div className="block whitespace-nowrap text-center" style={{ color: defaultColor }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`a-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 32}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //       <div className="absolute inset-0 block whitespace-nowrap text-center" style={{ color: hoverColor }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`b-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(0%)' : 'translateY(120%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 32}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //     </a>
+// //   );
+// // };
+
+// // const BottomHoverLink = ({ text, className = "", isDark = false }) => {
+// //   const [hovered, setHovered] = useState(false);
+// //   return (
+// //     <span
+// //       className={`inline-block relative cursor-pointer ${className}`}
+// //       style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
+// //       onMouseEnter={() => setHovered(true)}
+// //       onMouseLeave={() => setHovered(false)}
+// //     >
+// //       <div className="block whitespace-nowrap" style={{ color: isDark ? 'rgba(20, 20, 20, 0.6)' : '#444444ff' }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`a-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 25}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //       <div className="absolute inset-0 block whitespace-nowrap" style={{ color: isDark ? '#000000ff' : '#000' }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`b-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 25}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //     </span>
+// //   );
+// // };
+
+// // const BottomHoverLink2 = ({ text, className = "", isDark = false }) => {
+// //   const [hovered, setHovered] = useState(false);
+// //   return (
+// //     <span
+// //       className={`inline-block relative cursor-pointer ${className}`}
+// //       style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
+// //       onMouseEnter={() => setHovered(true)}
+// //       onMouseLeave={() => setHovered(false)}
+// //     >
+// //       <div className="block whitespace-nowrap" style={{ color: isDark ? 'rgba(255, 255, 255, 1)' : '#ffffffff' }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`a-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 25}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //       <div className="absolute inset-0 block whitespace-nowrap" style={{ color: isDark ? '#cdff00' : '#cdff00' }}>
+// //         {text.split('').map((char, i) => (
+// //           <span
+// //             key={`b-${i}`}
+// //             className="inline-block"
+// //             style={{
+// //               transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+// //               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+// //               transitionDelay: `${i * 25}ms`,
+// //             }}
+// //           >
+// //             {char === ' ' ? '\u00A0' : char}
+// //           </span>
+// //         ))}
+// //       </div>
+// //     </span>
+// //   );
+// // };
+
+// // import logoIcon from '../assets/3d_Logo 1.png';
+// // import grayPanel from '../assets/graypanel.png';
+// // import grayPanelMobile from '../assets/graypanelmobile.png';
+// // import moreAttentionImg from '../assets/More Attention.png';
+// // import moreSalesImg from '../assets/More Sales.png';
+// // import everyDayImg from '../assets/Every Day.png';
+// // import ilanImg from '../assets/ilan.png';
+
+// // const Footer = ({ bgGradient, isDark = false }) => {
+// //   return (
+// //     <footer
+// //       className="w-full font-sans relative xl:pb-[0.5vw] pt-[40px]"
+// //       style={{ background: bgGradient || 'linear-gradient(to bottom, #e6fba2 0%, #cdff00 100%)' }}
+// //     >
+// //       {/* Background Panel Container */}
+// //       <div className="relative mx-auto w-[90%] sm:w-[80%] lg:w-[98%] flex flex-col items-center text-white px-4 sm:px-6 pt-[12%] pb-[14%] lg:pt-[3vw] lg:pb-[5.5vw]">
+// //         {/* Mobile Background Panel */}
+// //         <div
+// //           className="absolute inset-0 lg:hidden z-0"
+// //           style={{
+// //             backgroundImage: `url(${grayPanelMobile})`,
+// //             backgroundSize: '100% 100%',
+// //             backgroundRepeat: 'no-repeat',
+// //             backgroundPosition: 'center'
+// //           }}
+// //         />
+// //         {/* Desktop Background Panel */}
+// //         <div
+// //           className="absolute inset-0 hidden lg:block z-0"
+// //           style={{
+// //             backgroundImage: `url(${grayPanel})`,
+// //             backgroundSize: '100% 100%',
+// //             backgroundRepeat: 'no-repeat',
+// //             backgroundPosition: 'center'
+// //           }}
+// //         />
+
+// //         {/* --- MOBILE LAYOUT --- */}
+// //         <div className="flex lg:hidden flex-col items-center w-full h-full justify-between z-10">
+// //           <div className="flex justify-between w-full px-4">
+// //             {/* Pages Column */}
+// //             <div className="flex flex-col items-center pt-8">
+// //               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">PAGES</span>
+// //               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] leading-[1.2] tracking-normal space-y-0 text-center font-falcon">
+// //                 <HoverLink text="STUDIO" className="font-falcon" />
+// //                 <HoverLink text="DIGITAL SIGNAGE" className="font-falcon" />
+// //                 <HoverLink text="LINK" className="font-falcon" />
+// //                 <HoverLink text="MEDIA" className="font-falcon" />
+// //                 <a href="#" className="font-falcon font-bold text-[14px] sm:text-[15px] mt-4 uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300">
+// //                   STORE
+// //                 </a>
+// //               </nav>
+// //             </div>
+// //             {/* Follow On Column */}
+// //             <div className="flex flex-col items-center pt-8">
+// //               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">FOLLOW ON</span>
+// //               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] leading-[1.2] tracking-normal space-y-0 text-center font-falcon">
+// //                 <HoverLink text="TIKTOK" className="font-falcon" />
+// //                 <HoverLink text="INSTAGRAM" className="font-falcon uppercase" />
+// //                 <HoverLink text="YOUTUBE" className="font-falcon uppercase" />
+// //                 <HoverLink text="FACEBOOK" className="font-falcon uppercase" />
+// //                 <HoverLink text="LINKEDIN" className="font-falcon uppercase" />
+// //                 <HoverLink text="X" className="font-falcon uppercase" />
+// //               </nav>
+// //             </div>
+// //           </div>
+
+// //           {/* Headline */}
+// //           <div className="flex flex-col items-center text-center space-y-1 my-4">
+// //             <img src={moreAttentionImg} alt="More Attention" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+// //             <img src={moreSalesImg} alt="More Sales" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+// //             <img src={everyDayImg} alt="Every Day" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+// //           </div>
+
+// //           {/* Identity */}
+// //           <div className="flex flex-col items-center -space-y-4">
+// //             <img src={logoIcon} alt="Icon" className="w-40 sm:w-48 h-auto object-contain z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]" />
+// //             <img src={ilanImg} alt="ILAAN" className="w-52 sm:w-64 h-auto object-contain select-none" />
+// //           </div>
+// //         </div>
+
+// //         {/* --- DESKTOP LAYOUT --- */}
+// //         <div className="hidden lg:flex flex-col items-center w-full h-full justify-between z-10 lg:mt-10">
+// //           {/* Top Headline */}
+// //           <div className="flex flex-col items-center text-center -space-y-[0.5vw]">
+// //             <img src={moreAttentionImg} alt="More Attention" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
+// //             <img src={moreSalesImg} alt="More Sales" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
+// //             <img src={everyDayImg} alt="Every Day" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
+// //           </div>
+
+// //           {/* Main Center Grid */}
+// //           <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full max-w-[1600px] mx-auto gap-x-2 xl:gap-x-8">
+// //             {/* LEFT: Pages */}
+// //             <div className="flex flex-col items-center pr-[2vw] xl:pr-[12vw] pt-[4vw] xl:pt-[0vw]">
+// //               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">PAGES</span>
+// //               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
+// //                 <BottomHoverLink2 text="STUDIO" className="font-falcon" />
+// //                 <BottomHoverLink2 text="DIGITAL SIGNAGE" className="font-falcon" />
+// //                 <BottomHoverLink2 text="LINK" className="font-falcon" />
+// //                 <BottomHoverLink2 text="MEDIA" className="font-falcon" />
+// //               </nav>
+// //               <a href="#" className="font-falcon font-bold text-[1vw] xl:text-[18px] mt-[1.5vw] xl:mt-6 uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300">
+// //                 STORE
+// //               </a>
+// //             </div>
+
+// //             {/* CENTER: Identity */}
+// //             <div className="flex flex-col items-center justify-center -space-y-[1vw] xl:-space-y-4">
+// //               <img src={logoIcon} alt="Icon" className="w-[14vw] xl:w-72 h-auto object-contain z-10 drop-shadow-[0_25px_50px_rgba(0,0,0,0.8)]" />
+// //               <img src={ilanImg} alt="ILAAN" className="w-[18vw] xl:w-[339px] h-auto object-contain select-none" />
+// //             </div>
+
+// //             {/* RIGHT: Socials */}
+// //             <div className="flex flex-col items-center pl-[2vw] xl:pl-[12vw] pt-[4vw] xl:pt-[0vw]">
+// //               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">FOLLOW ON</span>
+// //               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
+// //                 <BottomHoverLink2 text="TIKTOK" className="font-falcon" />
+// //                 <BottomHoverLink2 text="INSTAGRAM" className="font-falcon uppercase" />
+// //                 <BottomHoverLink2 text="YOUTUBE" className="font-falcon uppercase" />
+// //                 <BottomHoverLink2 text="FACEBOOK" className="font-falcon uppercase" />
+// //                 <BottomHoverLink2 text="LINKEDIN" className="font-falcon uppercase" />
+// //                 <BottomHoverLink2 text="X" className="font-falcon uppercase" />
+// //               </nav>
+// //             </div>
+// //           </div>
+// //         </div>
+// //       </div>
+
+// //       {/* Bottom Bar */}
+// //       <div className={`w-full flex flex-row xl:flex-row-reverse justify-between items-center flex-nowrap gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter whitespace-nowrap z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
+// //         <div className="flex space-x-3 sm:space-x-4 md:space-x-6 justify-center">
+// //           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+// //             PRIVACY POLICY
+// //           </a>
+// //           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+// //             TERMS
+// //           </a>
+// //         </div>
+// //         <div className="opacity-90 text-center md:text-left xl:text-right whitespace-nowrap">
+// //           © 2026 Ilaan Limited. All rights reserved
+// //         </div>
+// //       </div>
+// //     </footer>
+// //   );
+// // };
+
+// // export default Footer;
+
+
+// import { useState } from 'react';
+
+// const HoverLink = ({ text, className = "", defaultColor = "white", hoverColor = "#cdff00" }) => {
+//   const [hovered, setHovered] = useState(false);
+
+//   return (
+//     <a
+//       href="#"
+//       className={`inline-block relative ${className}`}
+//       style={{
+//         overflow: 'hidden',
+//         textDecoration: 'none',
+//         display: 'block',
+//         lineHeight: '1.2',
+//         marginBottom: '2px',
+//       }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       {/* Default layer */}
+//       <div className="whitespace-nowrap text-center" style={{ color: defaultColor }}>
+//         {text.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//       {/* Hover layer */}
+//       <div
+//         className="absolute inset-0 whitespace-nowrap text-center"
+//         style={{ color: hoverColor }}
+//       >
+//         {text.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(120%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//     </a>
+//   );
+// };
+
+// const BottomHoverLink2 = ({ text, className = "" }) => {
+//   const [hovered, setHovered] = useState(false);
+
+//   return (
+//     <span
+//       className={`inline-block relative cursor-pointer ${className}`}
+//       style={{
+//         overflow: 'hidden',
+//         textDecoration: 'none',
+//         display: 'block',
+//         lineHeight: '1.05',
+//         marginBottom: '0px',
+//       }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       {/* Default white layer */}
+//       <div className="whitespace-nowrap" style={{ color: '#ffffff' }}>
+//         {text.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//       {/* Hover lime layer */}
+//       <div
+//         className="absolute inset-0 whitespace-nowrap"
+//         style={{ color: '#cdff00' }}
+//       >
+//         {text.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//     </span>
+//   );
+// };
+
+// import logoIcon from '../assets/3d_Logo 1.png';
+// import grayPanel from '../assets/graypanel.png';
+// import grayPanelMobile from '../assets/graypanelmobile.png';
+// import moreAttentionImg from '../assets/More Attention.png';
+// import moreSalesImg from '../assets/More Sales.png';
+// import everyDayImg from '../assets/Every Day.png';
+// import ilanImg from '../assets/ilan.png';
+
+// const Footer = ({ bgGradient, isDark = false }) => {
+//   return (
+//     <footer
+//       className="w-full font-sans relative xl:pb-[0.5vw] pt-[40px]"
+//       style={{ background: bgGradient || 'linear-gradient(to bottom, #e6fba2 0%, #cdff00 100%)' }}
+//     >
+//       {/* Background Panel Container */}
+//       <div className="relative mx-auto w-[90%] sm:w-[80%] lg:w-[98%] flex flex-col items-center text-white px-4 sm:px-6 pt-[12%] pb-[14%] lg:pt-[3vw] lg:pb-[5.5vw]">
+
+//         {/* Mobile Background Panel */}
+//         <div
+//           className="absolute inset-0 lg:hidden z-0"
+//           style={{
+//             backgroundImage: `url(${grayPanelMobile})`,
+//             backgroundSize: '100% 100%',
+//             backgroundRepeat: 'no-repeat',
+//             backgroundPosition: 'center',
+//           }}
+//         />
+//         {/* Desktop Background Panel */}
+//         <div
+//           className="absolute inset-0 hidden lg:block z-0"
+//           style={{
+//             backgroundImage: `url(${grayPanel})`,
+//             backgroundSize: '100% 100%',
+//             backgroundRepeat: 'no-repeat',
+//             backgroundPosition: 'center',
+//           }}
+//         />
+
+//         {/* ── MOBILE LAYOUT ── */}
+//         <div className="flex lg:hidden flex-col items-center w-full h-full justify-between z-10">
+//           <div className="flex justify-between w-full px-4">
+//             {/* Pages Column */}
+//             <div className="flex flex-col items-center pt-8">
+//               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">
+//                 PAGES
+//               </span>
+//               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] tracking-normal text-center font-falcon">
+//                 <HoverLink text="STUDIO" className="font-falcon" />
+//                 <HoverLink text="DIGITAL SIGNAGE" className="font-falcon" />
+//                 <HoverLink text="LINK" className="font-falcon" />
+//                 <HoverLink text="MEDIA" className="font-falcon" />
+//                 <a
+//                   href="#"
+//                   className="font-falcon font-bold text-[14px] sm:text-[15px] mt-4 uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300"
+//                 >
+//                   STORE
+//                 </a>
+//               </nav>
+//             </div>
+//             {/* Follow On Column */}
+//             <div className="flex flex-col items-center pt-8">
+//               <span className="text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-4 opacity-80">
+//                 FOLLOW ON
+//               </span>
+//               <nav className="flex flex-col items-center font-bold text-[18px] sm:text-[20px] tracking-normal text-center font-falcon">
+//                 <HoverLink text="TIKTOK" className="font-falcon" />
+//                 <HoverLink text="INSTAGRAM" className="font-falcon uppercase" />
+//                 <HoverLink text="YOUTUBE" className="font-falcon uppercase" />
+//                 <HoverLink text="FACEBOOK" className="font-falcon uppercase" />
+//                 <HoverLink text="LINKEDIN" className="font-falcon uppercase" />
+//                 <HoverLink text="X" className="font-falcon uppercase" />
+//               </nav>
+//             </div>
+//           </div>
+
+//           {/* Headline */}
+//           <div className="flex flex-col items-center text-center space-y-1 my-4">
+//             <img src={moreAttentionImg} alt="More Attention" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+//             <img src={moreSalesImg} alt="More Sales" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+//             <img src={everyDayImg} alt="Every Day" className="h-[28px] sm:h-[36px] w-auto object-contain" />
+//           </div>
+
+//           {/* Identity */}
+//           <div className="flex flex-col items-center -space-y-4">
+//             <img
+//               src={logoIcon}
+//               alt="Icon"
+//               className="w-40 sm:w-48 h-auto object-contain z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+//             />
+//             <img src={ilanImg} alt="ILAAN" className="w-52 sm:w-64 h-auto object-contain select-none" />
+//           </div>
+//         </div>
+
+//         {/* ── DESKTOP LAYOUT ── */}
+//         <div className="hidden lg:flex flex-col items-center w-full h-full justify-between z-10 lg:mt-10">
+
+//           {/* Top Headline */}
+//           <div className="flex flex-col items-center text-center -space-y-[0.5vw]">
+//             <img
+//               src={moreAttentionImg}
+//               alt="More Attention"
+//               className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain"
+//             />
+//             <img
+//               src={moreSalesImg}
+//               alt="More Sales"
+//               className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain"
+//             />
+//             <img
+//               src={everyDayImg}
+//               alt="Every Day"
+//               className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain"
+//             />
+//           </div>
+
+//           {/* Main 3-col Grid */}
+//           <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full max-w-[1300px] mx-auto gap-x-2 xl:gap-x-8 mt-6">
+
+//             {/* LEFT: Pages */}
+//             <div className="flex flex-col items-center">
+//               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">
+//                 PAGES
+//               </span>
+//               <nav
+//                 className="flex flex-col items-center font-extrabold tracking-tighter text-center font-falcon w-full"
+//                 style={{ fontSize: 'clamp(28px, 2.8vw, 50px)' }}
+//               >
+//                 <BottomHoverLink2 text="STUDIO" className="font-falcon w-full text-center" />
+//                 <BottomHoverLink2 text="DIGITAL SIGNAGE" className="font-falcon w-full text-center" />
+//                 <BottomHoverLink2 text="LINK" className="font-falcon w-full text-center" />
+//                 <BottomHoverLink2 text="MEDIA" className="font-falcon w-full text-center" />
+//               </nav>
+//               <a
+//                 href="#"
+//                 className="font-falcon font-bold uppercase tracking-widest text-[#cdff00] hover:text-white transition-colors duration-300 mt-[1.5vw] xl:mt-6"
+//                 style={{ fontSize: 'clamp(12px, 1vw, 18px)' }}
+//               >
+//                 STORE
+//               </a>
+//             </div>
+
+//             {/* CENTER: Identity */}
+//             <div className="flex flex-col items-center justify-center" style={{ marginTop: '-1vw' }}>
+//               <img
+//                 src={logoIcon}
+//                 alt="Icon"
+//                 className="w-[14vw] xl:w-72 h-auto object-contain z-10 drop-shadow-[0_25px_50px_rgba(0,0,0,0.8)]"
+//               />
+//               <img
+//                 src={ilanImg}
+//                 alt="ILAAN"
+//                 className="w-[18vw] xl:w-[339px] h-auto object-contain select-none"
+//                 style={{ marginTop: '-1vw' }}
+//               />
+//             </div>
+
+//             {/* RIGHT: Socials */}
+//             <div className="flex flex-col items-center">
+//               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">
+//                 FOLLOW ON
+//               </span>
+//               <nav
+//                 className="flex flex-col items-center font-extrabold tracking-tighter text-center font-falcon w-full"
+//                 style={{ fontSize: 'clamp(28px, 2.8vw, 50px)' }}
+//               >
+//                 <BottomHoverLink2 text="TIKTOK" className="font-falcon w-full text-center" />
+//                 <BottomHoverLink2 text="INSTAGRAM" className="font-falcon uppercase w-full text-center" />
+//                 <BottomHoverLink2 text="YOUTUBE" className="font-falcon uppercase w-full text-center" />
+//                 <BottomHoverLink2 text="FACEBOOK" className="font-falcon uppercase w-full text-center" />
+//                 <BottomHoverLink2 text="LINKEDIN" className="font-falcon uppercase w-full text-center" />
+//                 <BottomHoverLink2 text="X" className="font-falcon uppercase w-full text-center" />
+//               </nav>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Bottom Bar */}
+//       <div
+//         className={`w-full flex flex-col md:flex-row xl:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}
+//       >
+//         <div className="flex space-x-3 sm:space-x-4 md:space-x-6 justify-center">
+//           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+//             PRIVACY POLICY
+//           </a>
+//           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+//             TERMS
+//           </a>
+//         </div>
+//         <div className="opacity-90 text-center md:text-left xl:text-right whitespace-nowrap">
+//           © 2026 Ilaan Limited. All rights reserved
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
+
+
+///////////////////////////////////END//////////////////////////////////////////////
+
+
+
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -54,7 +657,7 @@ const BottomHoverLink = ({ text, className = "", isDark = false }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <span
-      className={`inline-block relative cursor-pointer ${className}`}
+      className={`zee inline-block relative cursor-pointer ${className}`}
       style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -97,7 +700,7 @@ const BottomHoverLink2 = ({ text, className = "", isDark = false }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <span
-      className={`inline-block relative cursor-pointer ${className}`}
+      className={`zee inline-block relative cursor-pointer ${className}`}
       style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -220,14 +823,28 @@ const Footer = ({ bgGradient, isDark = false }) => {
         {/* --- DESKTOP LAYOUT --- */}
         <div className="hidden lg:flex flex-col items-center w-full h-full justify-between z-10 lg:mt-10">
           {/* Top Headline */}
-          <div className="flex flex-col items-center text-center -space-y-[0.5vw]">
+          {/* <div className="flex flex-col items-center text-center -space-y-[0.5vw]">
             <img src={moreAttentionImg} alt="More Attention" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
             <img src={moreSalesImg} alt="More Sales" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
             <img src={everyDayImg} alt="Every Day" className="h-[2.5vw] xl:h-[3vw] min-h-[30px] max-h-[48px] w-auto object-contain" />
+          </div> */}
+
+          <div className="flex flex-col items-center text-center leading-[0.7]">
+            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+              More Attention.
+            </h2>
+
+            <h2 className="font-falcon font-bold text-[#CDFF00] text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+              More Sales.
+            </h2>
+
+            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+              Every Day.
+            </h2>
           </div>
 
           {/* Main Center Grid */}
-          <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full max-w-[1300px] mx-auto gap-x-2 xl:gap-x-8">
+          <div className="grid grid-cols-[1.2fr_auto_1.2fr] items-center w-full mx-auto gap-x-2 xl:gap-x-8">
             {/* LEFT: Pages */}
             <div className="flex flex-col items-center">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">PAGES</span>
@@ -265,7 +882,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className={`w-full flex flex-col md:flex-row xl:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
+      <div className={`bottombar w-full flex flex-col md:flex-row lg:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
         <div className="flex space-x-3 sm:space-x-4 md:space-x-6 justify-center">
           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             PRIVACY POLICY
@@ -274,7 +891,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
             TERMS
           </a>
         </div>
-        <div className="opacity-90 text-center md:text-left xl:text-right whitespace-nowrap">
+        <div className="opacity-90 text-center md:text-left lg:text-right whitespace-nowrap">
           © 2026 Ilaan Limited. All rights reserved
         </div>
       </div>

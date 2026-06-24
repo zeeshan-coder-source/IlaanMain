@@ -1,6 +1,1464 @@
-import React, { useRef, useLayoutEffect, useCallback, useState } from 'react';
+// import React, { useRef, useLayoutEffect, useCallback, useState, useEffect } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// import p1 from '../assets/1.webp';
+// import p2 from '../assets/2.webp';
+// import p3 from '../assets/3.webp';
+// import p4 from '../assets/6.webp';
+// import p5 from '../assets/7.webp';
+// import p6 from '../assets/2.webp';
+// import p7 from '../assets/3.webp';
+
+// import headingImg from '../assets/what’s up On Socials.png';
+// import ilaanTextImg from '../assets/Ilaanl.png';
+// import logo1 from '../assets/Logos_1.webp';
+// import logo2 from '../assets/Logos_2.webp';
+// import logo3 from '../assets/Logos_3.webp';
+// import logo4 from '../assets/Logos_4.webp';
+// import logo5 from '../assets/Logos_5.webp';
+// ;
+// import screenImg from '../assets/screen.png';
+// import icon2 from '../assets/icon2.png';
+// import icon3 from '../assets/icon3.png';
+// import icon4 from '../assets/icon4.png';
+
+// const icons = [screenImg, icon2, icon3, icon4];
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const socialCardsData = [
+//   { img: p1, targetRotate: -24, targetX: -620, targetY: 160, zIndex: 10 },
+//   { img: p2, targetRotate: -16, targetX: -420, targetY: 80, zIndex: 20 },
+//   { img: p3, targetRotate: -8, targetX: -215, targetY: 25, zIndex: 30 },
+//   { img: p4, targetRotate: 0, targetX: 0, targetY: 0, zIndex: 40 },
+//   { img: p5, targetRotate: 8, targetX: 215, targetY: 25, zIndex: 30 },
+//   { img: p6, targetRotate: 16, targetX: 420, targetY: 80, zIndex: 20 },
+//   { img: p7, targetRotate: 24, targetX: 620, targetY: 160, zIndex: 10 },
+// ];
+
+// const Marquee = ({ logos }) => {
+//   const trackRef = useRef(null);
+//   const animRef = useRef(null);
+//   const lastYRef = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
+
+//   useLayoutEffect(() => {
+//     const track = trackRef.current;
+
+//     const rafId = requestAnimationFrame(() => {
+//       gsap.set(track, { xPercent: 0 });
+//       animRef.current = gsap.to(track, {
+//         xPercent: -50,
+//         duration: 35,
+//         ease: 'none',
+//         repeat: -1,
+//         force3D: true,
+//       });
+//     });
+
+//     const onScroll = () => {
+//       const delta = window.scrollY - lastYRef.current;
+//       lastYRef.current = window.scrollY;
+//       if (!animRef.current) return;
+
+//       // Smoothly transition direction to fix "lagging/jerky" feel
+//       if (delta > 0 && animRef.current.timeScale() < 0) {
+//         gsap.to(animRef.current, { timeScale: 1, duration: 0.3, overwrite: true });
+//       } else if (delta < 0 && animRef.current.timeScale() > 0) {
+//         gsap.to(animRef.current, { timeScale: -1, duration: 0.3, overwrite: true });
+//       }
+//     };
+
+//     window.addEventListener('scroll', onScroll, { passive: true });
+//     return () => {
+//       cancelAnimationFrame(rafId);
+//       animRef.current?.kill();
+//       window.removeEventListener('scroll', onScroll);
+//     };
+//   }, [logos]);
+
+//   const repeated = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
+
+//   return (
+//     <div className="w-full overflow-hidden py-4 md:py-16 mt-0 mb-2 md:mt-2 md:mb-6">
+//       <div
+//         ref={trackRef}
+//         className="flex items-center whitespace-nowrap w-max will-change-transform gap-[60px] md:gap-[100px]"
+//       >
+//         {repeated.map((logo, i) => (
+//           <img
+//             key={i}
+//             src={logo}
+//             alt="Partner"
+//             className="h-[180px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const SocialLink = ({ link }) => {
+//   const [hovered, setHovered] = useState(false);
+//   return (
+//     <a
+//       href="#"
+//       className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[28px] whitespace-nowrap"
+//       style={{
+//         fontFamily: "'Falcon',Falcon",
+//         height: '25px',
+//         overflow: 'hidden',
+//         lineHeight: '1.3',
+//         verticalAlign: 'middle',
+//         textDecoration: 'none',
+//         letterSpacing: '-1px',
+//       }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       {/* Layer 1: green letters exit UPWARD on hover */}
+//       <div className="flex" style={{ color: '#97C92B' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-120%)' : 'translateY(0%)',
+//               opacity: hovered ? 0 : 1,
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//       {/* Layer 2: black letters enter from BOTTOM on hover */}
+//       <div className="flex absolute inset-0" style={{ color: '#000' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(110%)',
+//               opacity: hovered ? 1 : 0,
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//     </a>
+//   );
+// };
+
+
+
+// const Socials = () => {
+//   const containerRef = useRef(null);
+//   const wrapperRefs = useRef([]);
+//   const innerRefs = useRef([]);
+//   const headingRef = useRef(null);
+//   const linksRef = useRef(null);
+
+//   // Which card is currently hovered (-1 = none)
+//   const hoveredRef = useRef(-1);
+
+//   const [currentIconIndex, setCurrentIconIndex] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentIconIndex((prev) => (prev + 1) % 4);
+//     }, 800);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   const socialLinks = ['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'FACEBOOK', 'LINKEDIN', 'X'];
+//   const partnerLogos = [logo1, logo2, logo3, logo4, logo5];
+
+//   // ── Mouse Enter ────────────────────────────────────────────────────────────
+//   const handleMouseEnter = useCallback((idx) => {
+//     if (hoveredRef.current === idx) return;
+//     hoveredRef.current = idx;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       if (i === idx) {
+//         gsap.to(wrapper, { zIndex: 50, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 1.12,
+//           x: 0,
+//           y: -50,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       } else {
+//         const dir = i < idx ? -1 : 1;
+//         const dist = Math.abs(i - idx);
+//         const nudge = dir * (20 + dist * 14);
+
+//         gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 0.94,
+//           x: nudge,
+//           y: 12,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       }
+//     });
+//   }, []);
+
+//   // ── Mouse Leave ────────────────────────────────────────────────────────────
+//   const handleMouseLeave = useCallback((idx) => {
+//     if (hoveredRef.current !== idx) return;
+//     hoveredRef.current = -1;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.45, overwrite: 'auto' });
+//       gsap.to(inner, {
+//         scale: 1,
+//         x: 0,
+//         y: 0,
+//         duration: 0.45,
+//         ease: 'power3.inOut',
+//         overwrite: 'auto',
+//       });
+//     });
+//   }, []);
+
+//   // ── GSAP ScrollTrigger ──────────────────────────────────────────────────────
+//   useLayoutEffect(() => {
+//     const ctx = gsap.context(() => {
+
+//       // 1. Heading reveal — slides up as section enters
+//       gsap.fromTo(headingRef.current,
+//         { opacity: 0, y: 60 },
+//         {
+//           opacity: 1,
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: containerRef.current,
+//             start: 'top 88%',
+//             end: 'top 55%',
+//             scrub: 0.5,
+//           },
+//         }
+//       );
+
+//       // 2. Social links reveal
+//       if (linksRef.current) {
+//         gsap.fromTo(linksRef.current,
+//           { opacity: 0, y: 40 },
+//           {
+//             opacity: 1,
+//             y: 0,
+//             scrollTrigger: {
+//               trigger: linksRef.current,
+//               start: 'top 90%',
+//               end: 'top 65%',
+//               scrub: 0.5,
+//             },
+//           }
+//         );
+//       }
+
+//       // 3. Fan-spread animation using matchMedia for responsiveness
+//       const mm = gsap.matchMedia();
+
+//       mm.add({
+//         isMobile: "(max-width: 639px)",
+//         isTablet: "(min-width: 640px) and (max-width: 1023px)",
+//         isLaptop: "(min-width: 1024px) and (max-width: 1439px)",
+//         isDesktop: "(min-width: 1440px)"
+//       }, (context) => {
+//         let { isMobile, isTablet, isLaptop, isDesktop } = context.conditions;
+
+//         wrapperRefs.current.forEach((wrapper, i) => {
+//           const data = socialCardsData[i];
+
+//           // Calculate responsive targets
+//           let targetX = data.targetX;
+//           let targetY = data.targetY;
+//           let targetRotate = data.targetRotate;
+
+//           if (isMobile) {
+//             // Tighter fan spread for mobile
+//             const mobileX = [-110, -65, -30, 0, 30, 65, 110];
+//             const mobileY = [45, 20, 5, 0, 5, 20, 45];
+//             const mobileRotate = [-16, -11, -5, 0, 5, 11, 16];
+
+//             targetX = mobileX[i];
+//             targetY = mobileY[i];
+//             targetRotate = mobileRotate[i];
+//           } else if (isTablet) {
+//             // Custom spread for tablets to keep cards within screen boundaries
+//             const tabletX = [-200, -130, -65, 0, 65, 130, 200];
+//             const tabletY = [60, 30, 10, 0, 10, 30, 60];
+//             const tabletRotate = [-16, -11, -5, 0, 5, 11, 16];
+
+//             targetX = tabletX[i];
+//             targetY = tabletY[i];
+//             targetRotate = tabletRotate[i];
+//           } else if (isLaptop) {
+//             // Custom spread for laptop sized displays to keep cards within screen boundaries
+//             const laptopX = [-380, -250, -125, 0, 125, 250, 380];
+//             const laptopY = [100, 50, 15, 0, 15, 50, 100];
+//             const laptopRotate = [-20, -14, -7, 0, 7, 14, 20];
+
+//             targetX = laptopX[i];
+//             targetY = laptopY[i];
+//             targetRotate = laptopRotate[i];
+//           }
+
+//           gsap.fromTo(
+//             wrapper,
+//             {
+//               x: 0,
+//               y: 0,
+//               rotation: 0,
+//               opacity: i === 3 ? 1 : 0,
+//             },
+//             {
+//               x: targetX,
+//               y: targetY,
+//               rotation: targetRotate,
+//               opacity: 1,
+//               ease: 'power2.out',
+//               scrollTrigger: {
+//                 trigger: containerRef.current,
+//                 start: 'top 35%',
+//                 end: 'top -25%',
+//                 scrub: 0.3,
+//               },
+//             }
+//           );
+//         });
+//       });
+
+//     }, containerRef);
+
+//     return () => ctx.revert();
+//   }, []);
+
+//   // ── Render ────────────────────────────────────────────────────────────────
+//   return (
+
+//     <section
+//       ref={containerRef}
+//       className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-20"
+//     >
+//       <div className="relative z-10 w-full flex flex-col items-center">
+
+//         {/* ── Heading ─────────────────────────────────────────────────────── */}
+//         <div
+//           ref={headingRef}
+//           className="flex flex-col items-center mb-8 md:mb-0 px-4"
+//         >
+//           <div className="relative mb-4 md:mb-12 w-[40px] h-[40px] md:w-[55.37px] md:h-[55.37px]">
+//             {icons.map((icon, idx) => (
+//               <img
+//                 key={idx}
+//                 src={icon}
+//                 alt={`Screen Icon ${idx + 1}`}
+//                 className={`absolute inset-0 object-contain w-full h-full transition-all duration-300 ease-in-out ${currentIconIndex === idx
+//                   ? 'opacity-100 scale-100 translate-y-0'
+//                   : 'opacity-0 scale-90 translate-y-2 pointer-events-none'
+//                   }`}
+//                 draggable={false}
+//               />
+//             ))}
+//           </div>
+//           <div
+//             className="pointer-events-none select-none text-center leading-none font-falcon font-extrabold uppercase text-black"
+//             style={{
+//               fontFamily: "'Falcon', sans-serif",
+//               fontSize: 'clamp(48px, 8vw, 100px)',
+//               lineHeight: 0.6,
+//               maxWidth: '600px',
+//               letterSpacing: '-0.06em',
+//             }}
+//           >
+//             WHAT'S UP<br />ON SOCIALS
+//           </div>
+//         </div>
+
+//         {/* ── Fan Cards ───────────────────────────────────────────────────── */}
+//         {/*
+//           Container height is fixed so sticky scroll works nicely.
+//           On mobile cards are smaller; on desktop full size.
+//         */}
+//         <div
+//           className="relative w-full flex items-center justify-center"
+//           style={{ height: 'clamp(215px, 55vw, 680px)' }}
+//         >
+
+//           {/* <div
+//           className="relative w-full flex items-center justify-center"
+//           style={{ height: 'clamp(200px, 250px, 450px)' }}
+//         > */}
+
+//           {socialCardsData.map((card, index) => (
+//             <div
+//               key={index}
+//               ref={el => (wrapperRefs.current[index] = el)}
+//               className="absolute will-change-transform"
+//               style={{ zIndex: card.zIndex }}
+//             >
+//               <div
+//                 ref={el => (innerRefs.current[index] = el)}
+//                 onMouseEnter={() => handleMouseEnter(index)}
+//                 onMouseLeave={() => handleMouseLeave(index)}
+//                 className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gray-200 will-change-transform cursor-pointer"
+//                 style={{
+//                   width: 'clamp(140px, 18vw, 290px)',
+//                   height: 'clamp(240px, 32vw, 520px)',
+//                   boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.10)',
+//                 }}
+//               >
+//                 <img
+//                   src={card.img}
+//                   alt={`Social post ${index + 1}`}
+//                   className="w-full h-full object-cover"
+//                   style={{ pointerEvents: 'none', userSelect: 'none' }}
+//                   draggable={false}
+//                 />
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* ── Follow Links ────────────────────────────────────────────────── */}
+//         <div
+//           ref={linksRef}
+//           className="mt-12 md:mt-24 w-full px-4 flex flex-col items-center"
+//         >
+//           <div className="flex items-center justify-center gap-3 mb-8 md:mb-10 w-[252.82px] md:w-auto h-[54.91px] md:h-auto mx-auto">
+//             <span
+//               className="text-[23px] md:text-[55px] leading-[43.5px] md:leading-none"
+//               style={{
+//                 fontFamily: "'Falcon', sans-serif",
+//                 color: '#000',
+//                 textTransform: 'uppercase',
+//                 letterSpacing: '-0.04em',
+//               }}
+//             >
+//               FOLLOW ILAAN
+//             </span>
+//             {/* <img
+//               src={ilaanTextImg}
+//               alt="ILAAN"
+//               className="w-[85px] md:w-[123px] h-auto object-contain"
+//               draggable={false}
+//             /> */}
+//           </div>
+//           <div className="flex flex-nowrap items-center justify-center gap-[13px] sm:gap-[10px] md:gap-8 w-full px-1 md:px-0">
+//             {socialLinks.map((link, idx) => (
+//               <SocialLink key={idx} link={link} />
+//             ))}
+//           </div>
+//         </div>
+
+//       </div>
+
+//       {/* ── Partner Marquee ─────────────────────────────────────────────────── */}
+//       <Marquee logos={partnerLogos} />
+//     </section>
+//   );
+// };
+
+// export default Socials;
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// import React, { useRef, useLayoutEffect, useCallback, useState } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// import p1 from '../assets/1.webp';
+// import p2 from '../assets/2.webp';
+// import p3 from '../assets/3.webp';
+// import p4 from '../assets/6.webp';
+// import p5 from '../assets/7.webp';
+// import p6 from '../assets/2.webp';
+// import p7 from '../assets/3.webp';
+
+// import headingImg from '../assets/what’s up On Socials.png';
+// import ilaanTextImg from '../assets/Ilaanl.png';
+// import logo1 from '../assets/Logos_1.webp';
+// import logo2 from '../assets/Logos_2.webp';
+// import logo3 from '../assets/Logos_3.webp';
+// import logo4 from '../assets/Logos_4.webp';
+// import logo5 from '../assets/Logos_5.webp';
+// ;
+// import screenImg from '../assets/screen.png';
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const socialCardsData = [
+//   { img: p1, targetRotate: -24, targetX: -620, targetY: 160, zIndex: 10 },
+//   { img: p2, targetRotate: -16, targetX: -420, targetY: 80, zIndex: 20 },
+//   { img: p3, targetRotate: -8, targetX: -215, targetY: 25, zIndex: 30 },
+//   { img: p4, targetRotate: 0, targetX: 0, targetY: 0, zIndex: 40 },
+//   { img: p5, targetRotate: 8, targetX: 215, targetY: 25, zIndex: 30 },
+//   { img: p6, targetRotate: 16, targetX: 420, targetY: 80, zIndex: 20 },
+//   { img: p7, targetRotate: 24, targetX: 620, targetY: 160, zIndex: 10 },
+// ];
+
+// const Marquee = ({ logos }) => {
+//   const trackRef = useRef(null);
+//   const animRef = useRef(null);
+//   const lastYRef = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
+
+//   useLayoutEffect(() => {
+//     const track = trackRef.current;
+
+//     const rafId = requestAnimationFrame(() => {
+//       gsap.set(track, { xPercent: 0 });
+//       animRef.current = gsap.to(track, {
+//         xPercent: -50,
+//         duration: 35,
+//         ease: 'none',
+//         repeat: -1,
+//         force3D: true,
+//       });
+//     });
+
+//     const onScroll = () => {
+//       const delta = window.scrollY - lastYRef.current;
+//       lastYRef.current = window.scrollY;
+//       if (!animRef.current) return;
+
+//       // Smoothly transition direction to fix "lagging/jerky" feel
+//       if (delta > 0 && animRef.current.timeScale() < 0) {
+//         gsap.to(animRef.current, { timeScale: 1, duration: 0.3, overwrite: true });
+//       } else if (delta < 0 && animRef.current.timeScale() > 0) {
+//         gsap.to(animRef.current, { timeScale: -1, duration: 0.3, overwrite: true });
+//       }
+//     };
+
+//     window.addEventListener('scroll', onScroll, { passive: true });
+//     return () => {
+//       cancelAnimationFrame(rafId);
+//       animRef.current?.kill();
+//       window.removeEventListener('scroll', onScroll);
+//     };
+//   }, [logos]);
+
+//   const repeated = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
+
+//   return (
+//     <div className="w-full overflow-hidden py-4 md:py-16 mt-0 mb-2 md:mt-2 md:mb-6">
+//       <div
+//         ref={trackRef}
+//         className="flex items-center whitespace-nowrap w-max will-change-transform gap-[60px] md:gap-[100px]"
+//       >
+//         {repeated.map((logo, i) => (
+//           <img
+//             key={i}
+//             src={logo}
+//             alt="Partner"
+//             className="h-[100px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const SocialLink = ({ link }) => {
+//   const [hovered, setHovered] = useState(false);
+//   return (
+//     <a
+//       href="#"
+//       className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[25px] whitespace-nowrap"
+//       style={{
+//         // lineHeight: '149.7%',
+//         // letterSpacing: '0%',
+//         // fontFamily: "'Falcon',Falcon",
+
+//         height: '17px',
+//         overflow: 'hidden',
+//         lineHeight: '0.7',
+//         verticalAlign: 'middle',
+//         textDecoration: 'none',
+//         marginBottom: '8px',
+//         fontFamily: "'Falcon',Falcon",
+
+//       }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       {/* Layer 1: green letters exit UPWARD on hover */}
+//       {/* <div className="flex" style={{ color: '#97C92B' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-120%)' : 'translateY(0%)',
+//               opacity: hovered ? 0 : 1,
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div> */}
+
+//       <div className="flex" style={{ color: '#97C92B' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+
+//       {/* Layer 2: black letters enter from BOTTOM on hover */}
+//       {/* <div className="flex absolute inset-0" style={{ color: '#000' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(110%)',
+//               opacity: hovered ? 1 : 0,
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
+//               transitionDelay: `${i * 32}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div> */}
+
+//       <div className="flex absolute inset-0" style={{ color: '#000' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+
+
+//     </a >
+//   );
+// };
+
+// const Socials = () => {
+//   const containerRef = useRef(null);
+//   const wrapperRefs = useRef([]);
+//   const innerRefs = useRef([]);
+//   const headingRef = useRef(null);
+//   const linksRef = useRef(null);
+
+//   // Which card is currently hovered (-1 = none)
+//   const hoveredRef = useRef(-1);
+
+//   const socialLinks = ['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'FACEBOOK', 'LINKEDIN', 'X'];
+//   const partnerLogos = [logo1, logo2, logo3, logo4, logo5];
+
+//   // ── Mouse Enter ────────────────────────────────────────────────────────────
+//   const handleMouseEnter = useCallback((idx) => {
+//     if (hoveredRef.current === idx) return;
+//     hoveredRef.current = idx;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       if (i === idx) {
+//         gsap.to(wrapper, { zIndex: 50, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 1.12,
+//           x: 0,
+//           y: -50,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       } else {
+//         const dir = i < idx ? -1 : 1;
+//         const dist = Math.abs(i - idx);
+//         const nudge = dir * (20 + dist * 14);
+
+//         gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 0.94,
+//           x: nudge,
+//           y: 12,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       }
+//     });
+//   }, []);
+
+//   // ── Mouse Leave ────────────────────────────────────────────────────────────
+//   const handleMouseLeave = useCallback((idx) => {
+//     if (hoveredRef.current !== idx) return;
+//     hoveredRef.current = -1;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.45, overwrite: 'auto' });
+//       gsap.to(inner, {
+//         scale: 1,
+//         x: 0,
+//         y: 0,
+//         duration: 0.45,
+//         ease: 'power3.inOut',
+//         overwrite: 'auto',
+//       });
+//     });
+//   }, []);
+
+//   // ── GSAP ScrollTrigger ──────────────────────────────────────────────────────
+//   useLayoutEffect(() => {
+//     const ctx = gsap.context(() => {
+
+//       // 1. Heading reveal — slides up as section enters
+//       gsap.fromTo(headingRef.current,
+//         { opacity: 0, y: 60 },
+//         {
+//           opacity: 1,
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: containerRef.current,
+//             start: 'top 88%',
+//             end: 'top 55%',
+//             scrub: 0.5,
+//           },
+//         }
+//       );
+
+//       // 2. Social links reveal
+//       if (linksRef.current) {
+//         gsap.fromTo(linksRef.current,
+//           { opacity: 0, y: 40 },
+//           {
+//             opacity: 1,
+//             y: 0,
+//             scrollTrigger: {
+//               trigger: linksRef.current,
+//               start: 'top 90%',
+//               end: 'top 65%',
+//               scrub: 0.5,
+//             },
+//           }
+//         );
+//       }
+
+//       // 3. Fan-spread animation using matchMedia for responsiveness
+//       const mm = gsap.matchMedia();
+
+//       mm.add({
+//         isMobile: "(max-width: 639px)",
+//         isTablet: "(min-width: 640px) and (max-width: 1023px)",
+//         isLaptop: "(min-width: 1024px) and (max-width: 1439px)",
+//         isDesktop: "(min-width: 1440px)"
+//       }, (context) => {
+//         let { isMobile, isTablet, isLaptop, isDesktop } = context.conditions;
+
+//         wrapperRefs.current.forEach((wrapper, i) => {
+//           const data = socialCardsData[i];
+
+//           // Calculate responsive targets
+//           let targetX = data.targetX;
+//           let targetY = data.targetY;
+//           let targetRotate = data.targetRotate;
+
+//           if (isMobile) {
+//             // Tighter fan spread for mobile
+//             const mobileX = [-110, -65, -30, 0, 30, 65, 110];
+//             const mobileY = [45, 20, 5, 0, 5, 20, 45];
+//             const mobileRotate = [-16, -11, -5, 0, 5, 11, 16];
+
+//             targetX = mobileX[i];
+//             targetY = mobileY[i];
+//             targetRotate = mobileRotate[i];
+//           } else if (isTablet) {
+//             // Custom spread for tablets to keep cards within screen boundaries
+//             const tabletX = [-200, -130, -65, 0, 65, 130, 200];
+//             const tabletY = [60, 30, 10, 0, 10, 30, 60];
+//             const tabletRotate = [-16, -11, -5, 0, 5, 11, 16];
+
+//             targetX = tabletX[i];
+//             targetY = tabletY[i];
+//             targetRotate = tabletRotate[i];
+//           } else if (isLaptop) {
+//             // Custom spread for laptop sized displays to keep cards within screen boundaries
+//             const laptopX = [-380, -250, -125, 0, 125, 250, 380];
+//             const laptopY = [100, 50, 15, 0, 15, 50, 100];
+//             const laptopRotate = [-20, -14, -7, 0, 7, 14, 20];
+
+//             targetX = laptopX[i];
+//             targetY = laptopY[i];
+//             targetRotate = laptopRotate[i];
+//           }
+
+//           gsap.fromTo(
+//             wrapper,
+//             {
+//               x: 0,
+//               y: 0,
+//               rotation: 0,
+//               opacity: i === 3 ? 1 : 0,
+//             },
+//             {
+//               x: targetX,
+//               y: targetY,
+//               rotation: targetRotate,
+//               opacity: 1,
+//               ease: 'power2.out',
+//               scrollTrigger: {
+//                 trigger: containerRef.current,
+//                 start: 'top 35%',
+//                 end: 'top -25%',
+//                 scrub: 0.3,
+//               },
+//             }
+//           );
+//         });
+//       });
+
+//     }, containerRef);
+
+//     return () => ctx.revert();
+//   }, []);
+
+//   // ── Render ────────────────────────────────────────────────────────────────
+//   return (
+
+//     <section
+//       ref={containerRef}
+//       className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-40"
+//     >
+//       <div className="relative z-10 w-full flex flex-col items-center">
+//         <div
+//           ref={headingRef}
+//           className="flex flex-col items-center mb-8 md:mb-16 px-4"
+//         >
+//           <img
+//             src={screenImg}
+//             alt="Screen Icon"
+//             className="mb-4 md:mb-12 object-contain w-[40px] h-[40px] md:w-[55.37px] md:h-[55.37px]"
+//             draggable={false}
+//           />
+//           <div
+//             className="pointer-events-none select-none text-center leading-none font-falcon font-extrabold uppercase text-black"
+//             style={{
+//               fontFamily: "'Falcon', sans-serif",
+//               fontSize: 'clamp(48px, 8vw, 100px)',
+//               lineHeight: 1.05,
+//               maxWidth: '600px',
+//               letterSpacing: '-0.06em',
+//             }}
+//           >
+//             WHAT'S UP<br />ON SOCIALS
+//           </div>
+//         </div>
+
+//         <div
+//           className="relative w-full flex items-center justify-center"
+//           style={{ height: 'clamp(380px, 55vw, 680px)' }}
+//         >
+
+//           {socialCardsData.map((card, index) => (
+//             <div
+//               key={index}
+//               ref={el => (wrapperRefs.current[index] = el)}
+//               className="absolute will-change-transform"
+//               style={{ zIndex: card.zIndex }}
+//             >
+//               <div
+//                 ref={el => (innerRefs.current[index] = el)}
+//                 onMouseEnter={() => handleMouseEnter(index)}
+//                 onMouseLeave={() => handleMouseLeave(index)}
+//                 className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gray-200 will-change-transform cursor-pointer"
+//                 style={{
+//                   width: 'clamp(140px, 18vw, 290px)',
+//                   height: 'clamp(240px, 32vw, 520px)',
+//                   boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.10)',
+//                 }}
+//               >
+//                 <img
+//                   src={card.img}
+//                   alt={`Social post ${index + 1}`}
+//                   className="w-full h-full object-cover"
+//                   style={{ pointerEvents: 'none', userSelect: 'none' }}
+//                   draggable={false}
+//                 />
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div
+//           ref={linksRef}
+//           className="mt-12 md:mt-24 w-full px-4 flex flex-col items-center"
+//         >
+//           <div className="flex items-center justify-center gap-3 mb-8 md:mb-10 w-[252.82px] md:w-auto h-[54.91px] md:h-auto mx-auto">
+//             <span
+//               className="text-[23px] md:text-[55px] leading-[43.5px] md:leading-none"
+//               style={{
+//                 fontFamily: "'Falcon', sans-serif",
+//                 color: '#000',
+//                 textTransform: 'uppercase',
+//                 letterSpacing: '-0.04em',
+//               }}
+//             >
+//               FOLLOW ILAAN
+//             </span>
+
+//           </div>
+//           <div className="flex flex-nowrap items-center justify-center gap-[13px] sm:gap-[10px] md:gap-8 w-full px-1 md:px-0">
+//             {socialLinks.map((link, idx) => (
+//               <SocialLink key={idx} link={link} />
+//             ))}
+//           </div>
+//         </div>
+
+//       </div>
+
+//       <Marquee logos={partnerLogos} />
+//     </section>
+//   );
+// };
+
+// export default Socials;
+
+//////////////////////////////////////////////////////////////////////////
+
+
+// import React, { useRef, useLayoutEffect, useCallback, useState, useEffect } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// import p1 from '../assets/1.webp';
+// import p2 from '../assets/2.webp';
+// import p3 from '../assets/3.webp';
+// import p4 from '../assets/6.webp';
+// import p5 from '../assets/7.webp';
+// import p6 from '../assets/2.webp';
+// import p7 from '../assets/3.webp';
+
+// import headingImg from '../assets/what’s up On Socials.png';
+// import ilaanTextImg from '../assets/Ilaanl.png';
+// import logo1 from '../assets/Logos_1.webp';
+// import logo2 from '../assets/Logos_2.webp';
+// import logo3 from '../assets/Logos_3.webp';
+// import logo4 from '../assets/Logos_4.webp';
+// import logo5 from '../assets/Logos_5.webp';
+
+// import screenImg from '../assets/screen.png';
+// import icon2 from '../assets/icon2.png';
+// import icon3 from '../assets/icon3.png';
+// import icon4 from '../assets/icon4.png';
+
+// const cycleImages = [
+//   screenImg,
+//   icon2,
+//   icon3,
+//   icon4,
+// ];
+// const CYCLE_INTERVAL = 1800;
+// const FADE_DURATION = 500;
+
+// const CyclingIcon = () => {
+//   const [current, setCurrent] = useState(0);
+//   const [next, setNext] = useState(1);
+//   const [fading, setFading] = useState(false);
+//   const timerRef = useRef(null);
+
+//   useEffect(() => {
+//     timerRef.current = setInterval(() => {
+//       setFading(true);
+//       setTimeout(() => {
+//         setCurrent(prev => {
+//           const c = (prev + 1) % cycleImages.length;
+//           setNext((c + 1) % cycleImages.length);
+//           return c;
+//         });
+//         setFading(false);
+//       }, FADE_DURATION);
+//     }, CYCLE_INTERVAL);
+
+//     return () => clearInterval(timerRef.current);
+//   }, []);
+
+//   return (
+//     <div
+//       className="mb-4 md:mb-12"
+//       style={{
+//         position: 'relative',
+//         width: 'clamp(40px, 4vw, 55.37px)',
+//         height: 'clamp(40px, 4vw, 55.37px)',
+//         flexShrink: 0,
+//       }}
+//     >
+//       {/* Current image — fades out */}
+//       <img
+//         src={cycleImages[current]}
+//         alt="Social Icon"
+//         draggable={false}
+//         style={{
+//           position: 'absolute',
+//           inset: 0,
+//           width: '100%',
+//           height: '100%',
+//           objectFit: 'contain',
+//           opacity: fading ? 0 : 1,
+//           transition: `opacity ${FADE_DURATION}ms ease-in-out`,
+//           pointerEvents: 'none',
+//           userSelect: 'none',
+//         }}
+//       />
+//       {/* Next image — fades in */}
+//       <img
+//         src={cycleImages[next]}
+//         alt="Social Icon"
+//         draggable={false}
+//         style={{
+//           position: 'absolute',
+//           inset: 0,
+//           width: '100%',
+//           height: '100%',
+//           objectFit: 'contain',
+//           opacity: fading ? 1 : 0,
+//           transition: `opacity ${FADE_DURATION}ms ease-in-out`,
+//           pointerEvents: 'none',
+//           userSelect: 'none',
+//         }}
+//       />
+//     </div>
+//   );
+// };
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const socialCardsData = [
+//   { img: p1, targetRotate: -24, targetX: -620, targetY: 160, zIndex: 10 },
+//   { img: p2, targetRotate: -16, targetX: -420, targetY: 80, zIndex: 20 },
+//   { img: p3, targetRotate: -8, targetX: -215, targetY: 25, zIndex: 30 },
+//   { img: p4, targetRotate: 0, targetX: 0, targetY: 0, zIndex: 40 },
+//   { img: p5, targetRotate: 8, targetX: 215, targetY: 25, zIndex: 30 },
+//   { img: p6, targetRotate: 16, targetX: 420, targetY: 80, zIndex: 20 },
+//   { img: p7, targetRotate: 24, targetX: 620, targetY: 160, zIndex: 10 },
+// ];
+
+// const Marquee = ({ logos }) => {
+//   const trackRef = useRef(null);
+//   const animRef = useRef(null);
+//   const lastYRef = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
+
+//   useLayoutEffect(() => {
+//     const track = trackRef.current;
+
+//     const rafId = requestAnimationFrame(() => {
+//       gsap.set(track, { xPercent: 0 });
+//       animRef.current = gsap.to(track, {
+//         xPercent: -50,
+//         duration: 35,
+//         ease: 'none',
+//         repeat: -1,
+//         force3D: true,
+//       });
+//     });
+
+//     const onScroll = () => {
+//       const delta = window.scrollY - lastYRef.current;
+//       lastYRef.current = window.scrollY;
+//       if (!animRef.current) return;
+
+//       if (delta > 0 && animRef.current.timeScale() < 0) {
+//         gsap.to(animRef.current, { timeScale: 1, duration: 0.3, overwrite: true });
+//       } else if (delta < 0 && animRef.current.timeScale() > 0) {
+//         gsap.to(animRef.current, { timeScale: -1, duration: 0.3, overwrite: true });
+//       }
+//     };
+
+//     window.addEventListener('scroll', onScroll, { passive: true });
+//     return () => {
+//       cancelAnimationFrame(rafId);
+//       animRef.current?.kill();
+//       window.removeEventListener('scroll', onScroll);
+//     };
+//   }, [logos]);
+
+//   const repeated = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
+
+//   return (
+//     <div className="w-full overflow-hidden py-4 md:py-16 mt-0 mb-2 md:mt-2 md:mb-6">
+//       <div
+//         ref={trackRef}
+//         className="flex items-center whitespace-nowrap w-max will-change-transform gap-[60px] md:gap-[100px]"
+//       >
+//         {repeated.map((logo, i) => (
+//           <img
+//             key={i}
+//             src={logo}
+//             alt="Partner"
+//             className="h-[100px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const SocialLink = ({ link }) => {
+//   const [hovered, setHovered] = useState(false);
+//   return (
+//     <a
+//       href="#"
+//       className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[25px] whitespace-nowrap"
+//       style={{
+//         height: '17px',
+//         overflow: 'hidden',
+//         lineHeight: '0.7',
+//         verticalAlign: 'middle',
+//         textDecoration: 'none',
+//         marginBottom: '8px',
+//         fontFamily: "'Falcon',Falcon",
+//       }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//     >
+//       <div className="flex" style={{ color: '#97C92B' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`a-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+
+//       <div className="flex absolute inset-0" style={{ color: '#000' }}>
+//         {link.split('').map((char, i) => (
+//           <span
+//             key={`b-${i}`}
+//             className="inline-block"
+//             style={{
+//               transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+//               transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+//               transitionDelay: `${i * 25}ms`,
+//             }}
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </span>
+//         ))}
+//       </div>
+//     </a>
+//   );
+// };
+
+// const Socials = () => {
+//   const containerRef = useRef(null);
+//   const wrapperRefs = useRef([]);
+//   const innerRefs = useRef([]);
+//   const headingRef = useRef(null);
+//   const linksRef = useRef(null);
+
+//   const hoveredRef = useRef(-1);
+
+//   const socialLinks = ['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'FACEBOOK', 'LINKEDIN', 'X'];
+//   const partnerLogos = [logo1, logo2, logo3, logo4, logo5];
+
+//   const handleMouseEnter = useCallback((idx) => {
+//     if (hoveredRef.current === idx) return;
+//     hoveredRef.current = idx;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       if (i === idx) {
+//         gsap.to(wrapper, { zIndex: 50, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 1.12,
+//           x: 0,
+//           y: -50,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       } else {
+//         const dir = i < idx ? -1 : 1;
+//         const dist = Math.abs(i - idx);
+//         const nudge = dir * (20 + dist * 14);
+
+//         gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.35, overwrite: 'auto' });
+//         gsap.to(inner, {
+//           scale: 0.94,
+//           x: nudge,
+//           y: 12,
+//           duration: 0.35,
+//           ease: 'power3.out',
+//           overwrite: 'auto',
+//         });
+//       }
+//     });
+//   }, []);
+
+//   const handleMouseLeave = useCallback((idx) => {
+//     if (hoveredRef.current !== idx) return;
+//     hoveredRef.current = -1;
+
+//     innerRefs.current.forEach((inner, i) => {
+//       if (!inner) return;
+//       const wrapper = wrapperRefs.current[i];
+
+//       gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.45, overwrite: 'auto' });
+//       gsap.to(inner, {
+//         scale: 1,
+//         x: 0,
+//         y: 0,
+//         duration: 0.45,
+//         ease: 'power3.inOut',
+//         overwrite: 'auto',
+//       });
+//     });
+//   }, []);
+
+//   useLayoutEffect(() => {
+//     const ctx = gsap.context(() => {
+
+//       gsap.fromTo(headingRef.current,
+//         { opacity: 0, y: 60 },
+//         {
+//           opacity: 1,
+//           y: 0,
+//           scrollTrigger: {
+//             trigger: containerRef.current,
+//             start: 'top 88%',
+//             end: 'top 55%',
+//             scrub: 0.5,
+//           },
+//         }
+//       );
+
+//       if (linksRef.current) {
+//         gsap.fromTo(linksRef.current,
+//           { opacity: 0, y: 40 },
+//           {
+//             opacity: 1,
+//             y: 0,
+//             scrollTrigger: {
+//               trigger: linksRef.current,
+//               start: 'top 90%',
+//               end: 'top 65%',
+//               scrub: 0.5,
+//             },
+//           }
+//         );
+//       }
+
+//       const mm = gsap.matchMedia();
+
+//       mm.add({
+//         isMobile: "(max-width: 639px)",
+//         isTablet: "(min-width: 640px) and (max-width: 1023px)",
+//         isLaptop: "(min-width: 1024px) and (max-width: 1439px)",
+//         isDesktop: "(min-width: 1440px)"
+//       }, (context) => {
+//         let { isMobile, isTablet, isLaptop, isDesktop } = context.conditions;
+
+//         wrapperRefs.current.forEach((wrapper, i) => {
+//           const data = socialCardsData[i];
+
+//           let targetX = data.targetX;
+//           let targetY = data.targetY;
+//           let targetRotate = data.targetRotate;
+
+//           if (isMobile) {
+//             const mobileX = [-110, -65, -30, 0, 30, 65, 110];
+//             const mobileY = [45, 20, 5, 0, 5, 20, 45];
+//             const mobileRotate = [-16, -11, -5, 0, 5, 11, 16];
+//             targetX = mobileX[i];
+//             targetY = mobileY[i];
+//             targetRotate = mobileRotate[i];
+//           } else if (isTablet) {
+//             const tabletX = [-200, -130, -65, 0, 65, 130, 200];
+//             const tabletY = [60, 30, 10, 0, 10, 30, 60];
+//             const tabletRotate = [-16, -11, -5, 0, 5, 11, 16];
+//             targetX = tabletX[i];
+//             targetY = tabletY[i];
+//             targetRotate = tabletRotate[i];
+//           } else if (isLaptop) {
+//             const laptopX = [-380, -250, -125, 0, 125, 250, 380];
+//             const laptopY = [100, 50, 15, 0, 15, 50, 100];
+//             const laptopRotate = [-20, -14, -7, 0, 7, 14, 20];
+//             targetX = laptopX[i];
+//             targetY = laptopY[i];
+//             targetRotate = laptopRotate[i];
+//           }
+
+//           gsap.fromTo(
+//             wrapper,
+//             {
+//               x: 0,
+//               y: 0,
+//               rotation: 0,
+//               opacity: i === 3 ? 1 : 0,
+//             },
+//             {
+//               x: targetX,
+//               y: targetY,
+//               rotation: targetRotate,
+//               opacity: 1,
+//               ease: 'power2.out',
+//               scrollTrigger: {
+//                 trigger: containerRef.current,
+//                 start: 'top 35%',
+//                 end: 'top -25%',
+//                 scrub: 0.3,
+//               },
+//             }
+//           );
+//         });
+//       });
+
+//     }, containerRef);
+
+//     return () => ctx.revert();
+//   }, []);
+
+//   return (
+//     <section
+//       ref={containerRef}
+//       className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-40"
+//     >
+//       <div className="relative z-10 w-full flex flex-col items-center">
+//         <div
+//           ref={headingRef}
+//           className="flex flex-col items-center mb-8 md:mb-16 px-4"
+//         >
+//           {/* ── Cycling Icon (replaces single screenImg) ── */}
+//           <CyclingIcon />
+
+//           <div
+//             className="pointer-events-none select-none text-center leading-none font-falcon font-extrabold uppercase text-black"
+//             style={{
+//               fontFamily: "'Falcon', sans-serif",
+//               fontSize: 'clamp(48px, 8vw, 100px)',
+//               lineHeight: 1.05,
+//               maxWidth: '600px',
+//               letterSpacing: '-0.06em',
+//             }}
+//           >
+//             WHAT&apos;S UP<br />ON SOCIALS
+//           </div>
+//         </div>
+
+//         <div
+//           className="relative w-full flex items-center justify-center"
+//           style={{ height: 'clamp(380px, 55vw, 680px)' }}
+//         >
+//           {socialCardsData.map((card, index) => (
+//             <div
+//               key={index}
+//               ref={el => (wrapperRefs.current[index] = el)}
+//               className="absolute will-change-transform"
+//               style={{ zIndex: card.zIndex }}
+//             >
+//               <div
+//                 ref={el => (innerRefs.current[index] = el)}
+//                 onMouseEnter={() => handleMouseEnter(index)}
+//                 onMouseLeave={() => handleMouseLeave(index)}
+//                 className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gray-200 will-change-transform cursor-pointer"
+//                 style={{
+//                   width: 'clamp(140px, 18vw, 290px)',
+//                   height: 'clamp(240px, 32vw, 520px)',
+//                   boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.10)',
+//                 }}
+//               >
+//                 <img
+//                   src={card.img}
+//                   alt={`Social post ${index + 1}`}
+//                   className="w-full h-full object-cover"
+//                   style={{ pointerEvents: 'none', userSelect: 'none' }}
+//                   draggable={false}
+//                 />
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div
+//           ref={linksRef}
+//           className="mt-12 md:mt-24 w-full px-4 flex flex-col items-center"
+//         >
+//           <div className="flex items-center justify-center gap-3 mb-8 md:mb-10 w-[252.82px] md:w-auto h-[54.91px] md:h-auto mx-auto">
+//             <span
+//               className="text-[23px] md:text-[55px] leading-[43.5px] md:leading-none"
+//               style={{
+//                 fontFamily: "'Falcon', sans-serif",
+//                 color: '#000',
+//                 textTransform: 'uppercase',
+//                 letterSpacing: '-0.04em',
+//               }}
+//             >
+//               FOLLOW ILAAN
+//             </span>
+//           </div>
+//           <div className="flex flex-nowrap items-center justify-center gap-[13px] sm:gap-[10px] md:gap-8 w-full px-1 md:px-0">
+//             {socialLinks.map((link, idx) => (
+//               <SocialLink key={idx} link={link} />
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       <Marquee logos={partnerLogos} />
+//     </section>
+//   );
+// };
+
+// export default Socials;
+
+
+import React, { useRef, useLayoutEffect, useCallback, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import HeadingH1 from './HeadingH1';
+
 
 import p1 from '../assets/1.webp';
 import p2 from '../assets/2.webp';
@@ -10,15 +1468,96 @@ import p5 from '../assets/7.webp';
 import p6 from '../assets/2.webp';
 import p7 from '../assets/3.webp';
 
-import headingImg from '../assets/what’s up On Socials.png';
 import ilaanTextImg from '../assets/Ilaanl.png';
 import logo1 from '../assets/Logos_1.webp';
 import logo2 from '../assets/Logos_2.webp';
 import logo3 from '../assets/Logos_3.webp';
 import logo4 from '../assets/Logos_4.webp';
 import logo5 from '../assets/Logos_5.webp';
-;
+
 import screenImg from '../assets/screen.png';
+import icon2 from '../assets/icon2.png';
+import icon3 from '../assets/icon3.png';
+import icon4 from '../assets/icon4.png';
+
+// ── Cycling Icon ────────────────────────────────────────────────────────────
+const cycleImages = [screenImg, icon2, icon3, icon4];
+// const HOLD = 1400; 
+// const FADE_MS = 400;  
+
+const HOLD = 1000;    // pehle 1400 tha
+const FADE_MS = 250;  // pehle 400 tha
+
+const CyclingIcon = () => {
+  // Keep one ref per image slot — all mounted at once, opacity controlled by GSAP
+  const imgRefs = useRef([]);
+  const indexRef = useRef(0);
+  const tlRef = useRef(null);
+
+  useEffect(() => {
+    const imgs = imgRefs.current;
+    const total = cycleImages.length;
+
+    // Set initial state: first image visible, rest invisible
+    gsap.set(imgs, { opacity: 0 });
+    gsap.set(imgs[0], { opacity: 1 });
+
+    const advance = () => {
+      const curr = indexRef.current;
+      const next = (curr + 1) % total;
+
+      // Kill previous tween if still running
+      tlRef.current?.kill();
+
+      tlRef.current = gsap.timeline()
+        // Cross-fade: fade in next while fading out current simultaneously
+        .to(imgs[curr], { opacity: 0, duration: FADE_MS / 1000, ease: 'power1.inOut' }, 0)
+        .to(imgs[next], { opacity: 1, duration: FADE_MS / 1000, ease: 'power1.inOut' }, 0)
+        .call(() => { indexRef.current = next; });
+    };
+
+    const interval = setInterval(advance, HOLD + FADE_MS);
+
+    return () => {
+      clearInterval(interval);
+      tlRef.current?.kill();
+    };
+  }, []);
+
+  return (
+    <div
+      className="mb-4 md:mb-12"
+      style={{
+        position: 'relative',
+        width: 'clamp(40px, 4vw, 55.37px)',
+        height: 'clamp(40px, 4vw, 55.37px)',
+        flexShrink: 0,
+      }}
+    >
+      {cycleImages.map((src, i) => (
+        <img
+          key={i}
+          ref={el => (imgRefs.current[i] = el)}
+          src={src}
+          alt="Social Icon"
+          draggable={false}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            opacity: 0,
+            pointerEvents: 'none',
+            userSelect: 'none',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// ───────────────────────────────────────────────────────────────────────────
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,7 +1595,6 @@ const Marquee = ({ logos }) => {
       lastYRef.current = window.scrollY;
       if (!animRef.current) return;
 
-      // Smoothly transition direction to fix "lagging/jerky" feel
       if (delta > 0 && animRef.current.timeScale() < 0) {
         gsap.to(animRef.current, { timeScale: 1, duration: 0.3, overwrite: true });
       } else if (delta < 0 && animRef.current.timeScale() > 0) {
@@ -85,7 +1623,7 @@ const Marquee = ({ logos }) => {
             key={i}
             src={logo}
             alt="Partner"
-            className="h-[180px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+            className="h-[100px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
           />
         ))}
       </div>
@@ -98,47 +1636,44 @@ const SocialLink = ({ link }) => {
   return (
     <a
       href="#"
-      className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[28px] whitespace-nowrap"
+      className="font-bold uppercase inline-block relative overflow-hidden text-[10px] sm:text-[11px] md:text-[25px] whitespace-nowrap"
       style={{
-        fontFamily: "'Falcon',Falcon",
-        height: '25px',
+        height: '17px',
         overflow: 'hidden',
-        lineHeight: '1.3',
+        lineHeight: '0.7',
         verticalAlign: 'middle',
         textDecoration: 'none',
-        letterSpacing: '-1px',
+        marginBottom: '8px',
+        fontFamily: "'Falcon',Falcon",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Layer 1: green letters exit UPWARD on hover */}
       <div className="flex" style={{ color: '#97C92B' }}>
         {link.split('').map((char, i) => (
           <span
             key={`a-${i}`}
             className="inline-block"
             style={{
-              transform: hovered ? 'translateY(-120%)' : 'translateY(0%)',
-              opacity: hovered ? 0 : 1,
-              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
-              transitionDelay: `${i * 32}ms`,
+              transform: hovered ? 'translateY(-100%)' : 'translateY(0%)',
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+              transitionDelay: `${i * 25}ms`,
             }}
           >
             {char === ' ' ? '\u00A0' : char}
           </span>
         ))}
       </div>
-      {/* Layer 2: black letters enter from BOTTOM on hover */}
+
       <div className="flex absolute inset-0" style={{ color: '#000' }}>
         {link.split('').map((char, i) => (
           <span
             key={`b-${i}`}
             className="inline-block"
             style={{
-              transform: hovered ? 'translateY(0%)' : 'translateY(110%)',
-              opacity: hovered ? 1 : 0,
-              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1), opacity 0.32s ease`,
-              transitionDelay: `${i * 32}ms`,
+              transform: hovered ? 'translateY(0%)' : 'translateY(100%)',
+              transition: `transform 0.38s cubic-bezier(0.76,0,0.24,1)`,
+              transitionDelay: `${i * 25}ms`,
             }}
           >
             {char === ' ' ? '\u00A0' : char}
@@ -149,22 +1684,17 @@ const SocialLink = ({ link }) => {
   );
 };
 
-
-
 const Socials = () => {
   const containerRef = useRef(null);
   const wrapperRefs = useRef([]);
   const innerRefs = useRef([]);
   const headingRef = useRef(null);
   const linksRef = useRef(null);
-
-  // Which card is currently hovered (-1 = none)
   const hoveredRef = useRef(-1);
 
   const socialLinks = ['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'FACEBOOK', 'LINKEDIN', 'X'];
   const partnerLogos = [logo1, logo2, logo3, logo4, logo5];
 
-  // ── Mouse Enter ────────────────────────────────────────────────────────────
   const handleMouseEnter = useCallback((idx) => {
     if (hoveredRef.current === idx) return;
     hoveredRef.current = idx;
@@ -175,33 +1705,18 @@ const Socials = () => {
 
       if (i === idx) {
         gsap.to(wrapper, { zIndex: 50, duration: 0.35, overwrite: 'auto' });
-        gsap.to(inner, {
-          scale: 1.12,
-          x: 0,
-          y: -50,
-          duration: 0.35,
-          ease: 'power3.out',
-          overwrite: 'auto',
-        });
+        gsap.to(inner, { scale: 1.12, x: 0, y: -50, duration: 0.35, ease: 'power3.out', overwrite: 'auto' });
       } else {
         const dir = i < idx ? -1 : 1;
         const dist = Math.abs(i - idx);
         const nudge = dir * (20 + dist * 14);
 
         gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.35, overwrite: 'auto' });
-        gsap.to(inner, {
-          scale: 0.94,
-          x: nudge,
-          y: 12,
-          duration: 0.35,
-          ease: 'power3.out',
-          overwrite: 'auto',
-        });
+        gsap.to(inner, { scale: 0.94, x: nudge, y: 12, duration: 0.35, ease: 'power3.out', overwrite: 'auto' });
       }
     });
   }, []);
 
-  // ── Mouse Leave ────────────────────────────────────────────────────────────
   const handleMouseLeave = useCallback((idx) => {
     if (hoveredRef.current !== idx) return;
     hoveredRef.current = -1;
@@ -211,27 +1726,17 @@ const Socials = () => {
       const wrapper = wrapperRefs.current[i];
 
       gsap.to(wrapper, { zIndex: socialCardsData[i].zIndex, duration: 0.45, overwrite: 'auto' });
-      gsap.to(inner, {
-        scale: 1,
-        x: 0,
-        y: 0,
-        duration: 0.45,
-        ease: 'power3.inOut',
-        overwrite: 'auto',
-      });
+      gsap.to(inner, { scale: 1, x: 0, y: 0, duration: 0.45, ease: 'power3.inOut', overwrite: 'auto' });
     });
   }, []);
 
-  // ── GSAP ScrollTrigger ──────────────────────────────────────────────────────
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-      // 1. Heading reveal — slides up as section enters
       gsap.fromTo(headingRef.current,
         { opacity: 0, y: 60 },
         {
-          opacity: 1,
-          y: 0,
+          opacity: 1, y: 0,
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'top 88%',
@@ -241,13 +1746,11 @@ const Socials = () => {
         }
       );
 
-      // 2. Social links reveal
       if (linksRef.current) {
         gsap.fromTo(linksRef.current,
           { opacity: 0, y: 40 },
           {
-            opacity: 1,
-            y: 0,
+            opacity: 1, y: 0,
             scrollTrigger: {
               trigger: linksRef.current,
               start: 'top 90%',
@@ -258,67 +1761,40 @@ const Socials = () => {
         );
       }
 
-      // 3. Fan-spread animation using matchMedia for responsiveness
       const mm = gsap.matchMedia();
-
       mm.add({
-        isMobile: "(max-width: 639px)",
-        isTablet: "(min-width: 640px) and (max-width: 1023px)",
-        isLaptop: "(min-width: 1024px) and (max-width: 1439px)",
-        isDesktop: "(min-width: 1440px)"
+        isMobile: '(max-width: 639px)',
+        isTablet: '(min-width: 640px) and (max-width: 1023px)',
+        isLaptop: '(min-width: 1024px) and (max-width: 1439px)',
+        isDesktop: '(min-width: 1440px)',
       }, (context) => {
-        let { isMobile, isTablet, isLaptop, isDesktop } = context.conditions;
+        const { isMobile, isTablet, isLaptop } = context.conditions;
 
         wrapperRefs.current.forEach((wrapper, i) => {
           const data = socialCardsData[i];
-
-          // Calculate responsive targets
-          let targetX = data.targetX;
-          let targetY = data.targetY;
-          let targetRotate = data.targetRotate;
+          let { targetX, targetY, targetRotate } = data;
 
           if (isMobile) {
-            // Tighter fan spread for mobile
             const mobileX = [-110, -65, -30, 0, 30, 65, 110];
             const mobileY = [45, 20, 5, 0, 5, 20, 45];
             const mobileRotate = [-16, -11, -5, 0, 5, 11, 16];
-
-            targetX = mobileX[i];
-            targetY = mobileY[i];
-            targetRotate = mobileRotate[i];
+            targetX = mobileX[i]; targetY = mobileY[i]; targetRotate = mobileRotate[i];
           } else if (isTablet) {
-            // Custom spread for tablets to keep cards within screen boundaries
             const tabletX = [-200, -130, -65, 0, 65, 130, 200];
             const tabletY = [60, 30, 10, 0, 10, 30, 60];
             const tabletRotate = [-16, -11, -5, 0, 5, 11, 16];
-
-            targetX = tabletX[i];
-            targetY = tabletY[i];
-            targetRotate = tabletRotate[i];
+            targetX = tabletX[i]; targetY = tabletY[i]; targetRotate = tabletRotate[i];
           } else if (isLaptop) {
-            // Custom spread for laptop sized displays to keep cards within screen boundaries
             const laptopX = [-380, -250, -125, 0, 125, 250, 380];
             const laptopY = [100, 50, 15, 0, 15, 50, 100];
             const laptopRotate = [-20, -14, -7, 0, 7, 14, 20];
-
-            targetX = laptopX[i];
-            targetY = laptopY[i];
-            targetRotate = laptopRotate[i];
+            targetX = laptopX[i]; targetY = laptopY[i]; targetRotate = laptopRotate[i];
           }
 
-          gsap.fromTo(
-            wrapper,
+          gsap.fromTo(wrapper,
+            { x: 0, y: 0, rotation: 0, opacity: i === 3 ? 1 : 0 },
             {
-              x: 0,
-              y: 0,
-              rotation: 0,
-              opacity: i === 3 ? 1 : 0,
-            },
-            {
-              x: targetX,
-              y: targetY,
-              rotation: targetRotate,
-              opacity: 1,
+              x: targetX, y: targetY, rotation: targetRotate, opacity: 1,
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: containerRef.current,
@@ -336,27 +1812,19 @@ const Socials = () => {
     return () => ctx.revert();
   }, []);
 
-  // ── Render ────────────────────────────────────────────────────────────────
   return (
-
     <section
       ref={containerRef}
-      className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-10"
+      className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-40"
     >
       <div className="relative z-10 w-full flex flex-col items-center">
-
-        {/* ── Heading ─────────────────────────────────────────────────────── */}
         <div
           ref={headingRef}
-          className="flex flex-col items-center mb-8 md:mb-0 px-4"
+          className="flex flex-col items-center mb-8 md:mb-16 px-4"
         >
-          <img
-            src={screenImg}
-            alt="Screen Icon"
-            className="mb-4 md:mb-12 object-contain w-[40px] h-[40px] md:w-[55.37px] md:h-[55.37px]"
-            draggable={false}
-          />
-          <div
+          <CyclingIcon />
+
+          {/* <div
             className="pointer-events-none select-none text-center leading-none font-falcon font-extrabold uppercase text-black"
             style={{
               fontFamily: "'Falcon', sans-serif",
@@ -366,25 +1834,19 @@ const Socials = () => {
               letterSpacing: '-0.06em',
             }}
           >
+            WHAT&apos;S UP<br />ON SOCIALS
+          </div> */}
+
+          <HeadingH1 leading="0.8em" txtColor="black">
             WHAT'S UP<br />ON SOCIALS
-          </div>
+          </HeadingH1>
+
         </div>
 
-        {/* ── Fan Cards ───────────────────────────────────────────────────── */}
-        {/*
-          Container height is fixed so sticky scroll works nicely.
-          On mobile cards are smaller; on desktop full size.
-        */}
         <div
           className="relative w-full flex items-center justify-center"
-          style={{ height: 'clamp(215px, 55vw, 680px)' }}
+          style={{ height: 'clamp(380px, 55vw, 680px)' }}
         >
-
-          {/* <div
-          className="relative w-full flex items-center justify-center"
-          style={{ height: 'clamp(200px, 250px, 450px)' }}
-        > */}
-
           {socialCardsData.map((card, index) => (
             <div
               key={index}
@@ -415,7 +1877,6 @@ const Socials = () => {
           ))}
         </div>
 
-        {/* ── Follow Links ────────────────────────────────────────────────── */}
         <div
           ref={linksRef}
           className="mt-12 md:mt-24 w-full px-4 flex flex-col items-center"
@@ -432,12 +1893,6 @@ const Socials = () => {
             >
               FOLLOW ILAAN
             </span>
-            {/* <img
-              src={ilaanTextImg}
-              alt="ILAAN"
-              className="w-[85px] md:w-[123px] h-auto object-contain"
-              draggable={false}
-            /> */}
           </div>
           <div className="flex flex-nowrap items-center justify-center gap-[13px] sm:gap-[10px] md:gap-8 w-full px-1 md:px-0">
             {socialLinks.map((link, idx) => (
@@ -445,14 +1900,11 @@ const Socials = () => {
             ))}
           </div>
         </div>
-
       </div>
 
-      {/* ── Partner Marquee ─────────────────────────────────────────────────── */}
       <Marquee logos={partnerLogos} />
     </section>
   );
 };
 
 export default Socials;
-

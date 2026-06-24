@@ -15,7 +15,7 @@ const Header = ({ onMenuOpen, animationClass = '', logoClickable = true }) => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/60 backdrop-blur-sm' : ''}`}>
-      <nav className={`flex items-center justify-between px-8 pb-4 md:px-12 lg:px-16 md:pb-6 lg:pb-6 ${scrolled ? 'pt-4 md:pt-4 lg:pt-4' : 'pt-10 md:pt-10 lg:pt-12'}`}>
+      <nav className={`flex items-center justify-between px-8 pb-4 md:px-12 lg:px-16 md:pb-6 lg:pb-2 ${scrolled ? 'pt-4 md:pt-4 lg:pt-2' : 'pt-10 md:pt-10 lg:pt-12'}`}>
         <div
           onClick={logoClickable ? () => navigateTo('home') : undefined}
           className={`flex items-center gap-2 ${logoClickable ? 'cursor-pointer hover:opacity-85 transition-opacity' : ''}`}

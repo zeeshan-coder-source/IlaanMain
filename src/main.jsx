@@ -7,7 +7,7 @@ import { NavigationProvider } from './context/NavigationContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Ilaan-updated/">
       <NavigationProvider>
         <App />
       </NavigationProvider>
