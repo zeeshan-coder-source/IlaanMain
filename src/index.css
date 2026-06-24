@@ -110,7 +110,13 @@ code {
 
 @media (max-width: 2560px) {
   .shantu {
-    gap: 40px !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 1920px) {
+  .shantu {
+    gap: 47px !important;
   }
 }
 

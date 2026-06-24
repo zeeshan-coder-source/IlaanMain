@@ -1815,27 +1815,14 @@ const Socials = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-40"
+      className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-0"
     >
-      <div className="relative z-10 w-full flex flex-col items-center">
+      {/* <div className="relative z-10 w-full flex flex-col items-center">
         <div
           ref={headingRef}
           className="flex flex-col items-center mb-8 md:mb-16 px-4"
-        >
+        >``
           <CyclingIcon />
-
-          {/* <div
-            className="pointer-events-none select-none text-center leading-none font-falcon font-extrabold uppercase text-black"
-            style={{
-              fontFamily: "'Falcon', sans-serif",
-              fontSize: 'clamp(48px, 8vw, 100px)',
-              lineHeight: 1.05,
-              maxWidth: '600px',
-              letterSpacing: '-0.06em',
-            }}
-          >
-            WHAT&apos;S UP<br />ON SOCIALS
-          </div> */}
 
           <HeadingH1 leading="0.8em" txtColor="black">
             WHAT'S UP<br />ON SOCIALS
@@ -1900,7 +1887,7 @@ const Socials = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Marquee logos={partnerLogos} />
     </section>
