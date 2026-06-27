@@ -355,7 +355,7 @@ const CommercialDisplays = () => {
   // }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full bg-white overflow-hidden h-[100vh] flex items-start md:items-center pt-6 md:pt-0">
+    <section ref={containerRef} data-header-theme="light" className="relative w-full bg-white overflow-hidden h-[100vh] flex items-start md:items-center pt-6 md:pt-0">
       {/* Header Logo */}
 
 

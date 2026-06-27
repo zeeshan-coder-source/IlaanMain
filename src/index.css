@@ -163,7 +163,7 @@ code {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   .shantu {
     gap: 0px !important;
   }

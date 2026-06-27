@@ -31,6 +31,7 @@ const SignageNetworks = () => {
   return (
     <section 
       ref={containerRef}
+      data-header-theme="light"
       className="bg-[#f5f6f2] text-black py-24 px-6 md:px-12 lg:px-24 flex items-center justify-center min-h-[95vh] border-t border-neutral-200 relative overflow-hidden"
     >
       

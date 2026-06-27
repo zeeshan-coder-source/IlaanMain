@@ -11,9 +11,9 @@ const NavOverlay = ({ isOpen, onClose }) => {
 
   const links = [
     { name: 'STUDIO', id: 'home' },
-    { name: 'Digital Signage', id: 'products' },
-    { name: 'LINK', id: 'link' },
-    { name: 'MEDIA', id: 'media' },
+    { name: 'Digital Signage', id: '' },
+    { name: 'LINK', id: '' },
+    { name: 'MEDIA', id: '' },
   ];
 
   const handleLinkClick = (id) => {
@@ -33,14 +33,14 @@ const NavOverlay = ({ isOpen, onClose }) => {
     >
       {/* Outer border to match design theme */}
       <div className="relative h-full w-full border-2 border-[#D9FF00]/30 rounded-[2.5rem] flex flex-col justify-between shadow-[0_0_30px_rgba(217,255,0,0.15)]">
-        
+
         {/* Top Header inside overlay */}
         <div className="relative z-20 flex items-center justify-between w-full px-8 py-8 md:px-12 lg:px-16">
-          <img 
-            onClick={() => handleLinkClick('home')} 
-            src={logoImage} 
-            alt="Ilaan Logo" 
-            className="h-12 md:h-18 w-auto object-contain cursor-pointer hover:opacity-85 transition-opacity" 
+          <img
+            onClick={() => handleLinkClick('home')}
+            src={logoImage}
+            alt="Ilaan Logo"
+            className="h-12 md:h-18 w-auto object-contain cursor-pointer hover:opacity-85 transition-opacity"
           />
           <button
             onClick={onClose}
@@ -61,9 +61,8 @@ const NavOverlay = ({ isOpen, onClose }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + index * 0.05, duration: 0.5, ease: 'easeOut' }}
                 onClick={() => handleLinkClick(link.id)}
-                className={`text-[28px] md:text-[50px] font-bold font-falcon tracking-widest relative group uppercase select-none transition-colors duration-300 ${
-                  isActive ? 'text-[#D9FF00]' : 'text-white hover:text-[#D9FF00]'
-                }`}
+                className={`text-[28px] md:text-[50px] font-bold font-falcon tracking-widest relative group uppercase select-none transition-colors duration-300 ${isActive ? 'text-[#D9FF00]' : 'text-white hover:text-[#D9FF00]'
+                  }`}
                 style={{ fontFamily: 'Falcon, sans-serif' }}
               >
                 {link.name}

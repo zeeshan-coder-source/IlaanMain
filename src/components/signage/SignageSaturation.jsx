@@ -44,6 +44,7 @@ const SignageSaturation = () => {
   return (
     <section 
       ref={containerRef}
+      data-header-theme="light"
       className="bg-[#D9FF00] text-black py-24 px-6 md:px-12 lg:px-24 flex items-center justify-center min-h-screen relative overflow-hidden"
     >
       

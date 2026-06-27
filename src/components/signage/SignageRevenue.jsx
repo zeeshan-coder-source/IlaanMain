@@ -31,6 +31,7 @@ const SignageRevenue = () => {
   return (
     <section 
       ref={containerRef}
+      data-header-theme="dark"
       className="bg-[#080808] py-24 px-6 md:px-12 lg:px-24 flex items-center justify-center min-h-[90vh] border-t border-white/5 relative overflow-hidden"
     >
       

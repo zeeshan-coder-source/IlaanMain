@@ -3,10 +3,15 @@ import { User, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import card1 from '../assets/c1.png';
-import card2 from '../assets/c2.png';
-import card3 from '../assets/update/linkcard.png';
-import card4 from '../assets/update/mediacard.png';
+// import card1 from '../assets/c1.png';
+// import card2 from '../assets/c2.png';
+// import card3 from '../assets/update/linkcard.png';
+// import card4 from '../assets/update/mediacard.png';
+
+import card1 from '../assets/update/c1.webp';
+import card2 from '../assets/update/c2.webp';
+import card3 from '../assets/update/linkcard.webp';
+import card4 from '../assets/update/mediacard.webp';
 
 const Card = ({ title, description, image, bgColor, textColor, btnColor, btnTextColor, showLogin }) => {
   return (
@@ -32,7 +37,7 @@ const Card = ({ title, description, image, bgColor, textColor, btnColor, btnText
             {title}
           </h1> */}
 
-          <h1 className={`font-falcon font-bold tracking-tight leading-none whitespace-nowrap
+          <h1 className={`font-falcon font-bold tracking-tight md:tracking-[-4px] leading-none whitespace-nowrap
   text-[36px] sm:text-[32px] md:text-[42px] lg:text-[48px] xl:text-[68px] 2xl:text-[85px]
   ${textColor}`}
           >
@@ -71,7 +76,7 @@ const ServiceSection = () => {
       textColor: "text-black",
       showLogin: true,
       btnColor: "bg-black",
-      btnTextColor: "text-white"
+      btnTextColor: "text-white",
     },
     {
       title: "ILAAN Digital Signage",
@@ -138,8 +143,10 @@ const ServiceSection = () => {
   }, []);
 
   return (
-    <div
+    <section
       ref={containerRef}
+      // data-header-theme="light"
+      data-hide-header
       className="bg-black py-8 px-4 md:px-8 overflow-hidden min-h-screen flex flex-col items-center justify-center perspective-2000"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-8 w-full">
@@ -147,7 +154,7 @@ const ServiceSection = () => {
           <Card key={index} {...service} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

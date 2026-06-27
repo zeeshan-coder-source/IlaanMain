@@ -54,6 +54,7 @@ const SignageGrowth = () => {
   return (
     <section 
       ref={containerRef}
+      data-header-theme="dark"
       className="bg-[#080808] py-24 px-6 md:px-12 lg:px-24 flex items-center justify-center min-h-[90vh] border-t border-white/5"
     >
       <div className="w-full max-w-[1600px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

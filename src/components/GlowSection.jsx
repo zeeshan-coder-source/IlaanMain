@@ -116,6 +116,7 @@ const GlowSection = () => {
   return (
     <section
       ref={containerRef}
+      data-header-theme="dark"
       className="relative h-[200vh] w-full bg-[#282C20] overflow-visible"
     >
       {/* Sticky container */}

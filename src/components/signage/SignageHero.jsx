@@ -63,7 +63,7 @@ const SignageHero = () => {
         animationClass="reveal-text-signage"
       />
 
-      <div ref={heroRef} className="relative h-screen w-full bg-black text-white font-sans p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden">
+      <div ref={heroRef} data-header-theme="dark" className="relative h-screen w-full bg-black text-white font-sans p-4 md:p-6 lg:p-8 flex items-center justify-center overflow-hidden">
       
       {/* Outer Border Container */}
       <div className="relative h-full w-full border-2 border-[#D9FF00]/30 rounded-[2.5rem] overflow-hidden flex flex-col shadow-[0_0_20px_rgba(217,255,0,0.1)]">

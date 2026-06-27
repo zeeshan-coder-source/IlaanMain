@@ -90,10 +90,13 @@ const BottomHoverLink = ({ text, className = "", isDark = false }) => {
   );
 };
 
-const BottomHoverLink2 = ({ text, className = "", isDark = false }) => {
+const BottomHoverLink2 = ({ text, className = "", isDark = false, href }) => {
   const [hovered, setHovered] = useState(false);
+  const Tag = href ? 'a' : 'span';
+  const linkProps = href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {};
   return (
-    <span
+    <Tag
+      {...linkProps}
       className={`zee inline-block relative cursor-pointer ${className}`}
       style={{ height: '26px', overflow: 'hidden', lineHeight: '0.63', verticalAlign: 'middle', textDecoration: 'none', marginBottom: '8px' }}
       onMouseEnter={() => setHovered(true)}
@@ -129,7 +132,7 @@ const BottomHoverLink2 = ({ text, className = "", isDark = false }) => {
           </span>
         ))}
       </div>
-    </span>
+    </Tag>
   );
 };
 
@@ -144,6 +147,7 @@ import ilanImg from '../assets/ilan.png';
 const Footer = ({ bgGradient, isDark = false }) => {
   return (
     <footer
+      data-header-theme="light"
       className="w-full font-sans relative xl:pb-[0.5vw] pt-[40px]"
       style={{ background: bgGradient || 'linear-gradient(to bottom, #e6fba2 0%, #cdff00 100%)' }}
     >
@@ -224,15 +228,15 @@ const Footer = ({ bgGradient, isDark = false }) => {
           </div> */}
 
           <div className="flex flex-col items-center text-center leading-[0.7]">
-            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-[-4px]">
               More Attention.
             </h2>
 
-            <h2 className="font-falcon font-bold text-[#CDFF00] text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+            <h2 className="font-falcon font-bold text-[#CDFF00] text-[48px] lg:text-[42px] xl:text-[70px] tracking-[-4px]">
               More Sales.
             </h2>
 
-            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-tight">
+            <h2 className="font-falcon font-bold text-white text-[48px] lg:text-[42px] xl:text-[70px] tracking-[-4px]">
               Every Day.
             </h2>
           </div>
@@ -263,12 +267,12 @@ const Footer = ({ bgGradient, isDark = false }) => {
             <div className="flex flex-col items-center">
               <span className="text-[0.6vw] xl:text-[10px] tracking-[0.4em] text-gray-500 font-bold uppercase mb-[1vw] opacity-60">FOLLOW ON</span>
               <nav className="flex flex-col items-center font-extrabold text-[2.8vw] xl:text-[50px] leading-[1] tracking-tighter space-y-0 text-center font-falcon">
-                <BottomHoverLink2 text="TIKTOK" className="font-falcon" />
-                <BottomHoverLink2 text="INSTAGRAM" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="TIKTOK" className="font-falcon" href="https://www.tiktok.com/@ilaan.io" />
+                <BottomHoverLink2 text="INSTAGRAM" className="font-falcon uppercase" href="https://www.instagram.com/ilaan.io/" />
                 <BottomHoverLink2 text="YOUTUBE" className="font-falcon uppercase" />
-                <BottomHoverLink2 text="FACEBOOK" className="font-falcon uppercase" />
-                <BottomHoverLink2 text="LINKEDIN" className="font-falcon uppercase" />
-                <BottomHoverLink2 text="X" className="font-falcon uppercase" />
+                <BottomHoverLink2 text="FACEBOOK" className="font-falcon uppercase" href="https://www.facebook.com/ilaanHQ" />
+                <BottomHoverLink2 text="LINKEDIN" className="font-falcon uppercase" href="https://www.linkedin.com/company/ilaan-io/" />
+                <BottomHoverLink2 text="X" className="font-falcon uppercase" href="https://x.com/ilaan_io" />
               </nav>
             </div>
           </div>

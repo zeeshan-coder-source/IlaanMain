@@ -31,6 +31,7 @@ const SignageCTA = () => {
   return (
     <section 
       ref={containerRef}
+      data-header-theme="light"
       className="bg-[#D9FF00] p-4 sm:p-6 md:p-12 lg:p-16 flex items-center justify-center border-t border-[#D9FF00]"
     >
       {/* Black Rounded Box inside the yellow frame */}

@@ -1623,7 +1623,7 @@ const Marquee = ({ logos }) => {
             key={i}
             src={logo}
             alt="Partner"
-            className="h-[100px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+            className="h-[200px] md:h-[200px] lg:h-[300px] w-auto max-w-none object-contain opacity-90 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
           />
         ))}
       </div>
@@ -1815,6 +1815,7 @@ const Socials = () => {
   return (
     <section
       ref={containerRef}
+      data-header-theme="light"
       className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-0 md:pt-0"
     >
       {/* <div className="relative z-10 w-full flex flex-col items-center">

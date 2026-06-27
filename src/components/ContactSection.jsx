@@ -63,7 +63,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="w-full py-6 pb-10 md:pb-20 lg:pb-20 px-4 md:px-6 relative overflow-hidden" style={{
+    <section data-header-theme="light" className="w-full py-6 pb-10 md:pb-20 lg:pb-20 px-4 md:px-6 relative overflow-hidden" style={{
       background: 'linear-gradient(180deg, #FFFFFF 0%, #E6FBA2 100%)'
     }}>
 
