@@ -280,7 +280,7 @@ const Footer = ({ bgGradient, isDark = false }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className={`bottombar w-full flex flex-col md:flex-row lg:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-white' : 'text-black'}`}>
+      <div className={`bottombar w-full flex flex-col md:flex-row lg:flex-row-reverse justify-between items-center gap-y-2 md:gap-y-0 px-6 sm:px-10 md:px-16 pb-4 pt-4 text-[10px] md:text-[12px] font-bold md:font-black uppercase tracking-normal md:tracking-tighter z-20 xl:absolute xl:bottom-[0.5vw] xl:left-[1.5%] xl:w-[96%] xl:text-[10px] xl:px-0 ${isDark ? 'text-black' : 'text-black'}`}>
         <div className="flex space-x-3 sm:space-x-4 md:space-x-6 justify-center">
           <a href="#" className="opacity-80 hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             PRIVACY POLICY
